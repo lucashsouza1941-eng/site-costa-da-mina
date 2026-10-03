@@ -266,13 +266,13 @@
     },
     "trancando-oficina": {
       "src": "/images/projetos/trancando-o-futuro/oficina-casa-de-cultura.webp",
-      "largura": 1080,
-      "altura": 1350,
+      "largura": 750,
+      "altura": 1090,
       "alt": "Oficina de tranças na Casa de Cultura: uma instrutora orienta uma aluna que trança o cabelo de outra pessoa",
       "categoria": "trancando-o-futuro",
       "tipo": "foto",
       "galeria": true,
-      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/05/1-POST-CDM-1.jpg"
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/05/1-POST-CDM-1.jpg (recorte 166,0,916,1090)"
     },
     "trancando-oficina-2": {
       "src": "/images/projetos/trancando-o-futuro/oficina-2.webp",

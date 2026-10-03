@@ -114,6 +114,8 @@ export const fontes = [
   {
     id: 'trancando-oficina',
     origem: '2026/05/1-POST-CDM-1.jpg',
+    // sem as barras roxas laterais, os logotipos e os ícones do Instagram
+    recorte: [166, 0, 916, 1090],
     destino: 'projetos/trancando-o-futuro/oficina-casa-de-cultura',
     categoria: 'trancando-o-futuro',
     galeria: true,

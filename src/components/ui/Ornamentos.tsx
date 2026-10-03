@@ -5,23 +5,56 @@ import { cx } from '@/lib/cx';
 
 type Base = { className?: string; style?: CSSProperties };
 
+/** Gerador pseudoaleatório com semente: o traço sai igual em todo build. */
+function aleatorio(semente: number) {
+  let s = semente >>> 0;
+  return () => {
+    s = (s * 1664525 + 1013904223) >>> 0;
+    return s / 4294967296;
+  };
+}
+
+/** Monta as cerdas de uma pincelada seca: faixas finas lado a lado, de comprimentos irregulares. */
+function cerdas(semente: number) {
+  const r = aleatorio(semente);
+  const caminhos: { d: string; opacidade: number }[] = [];
+  const total = 16;
+  for (let i = 0; i < total; i++) {
+    const posicao = (i + 0.5) / total; // 0 → 1 através da largura
+    const inicio = 6 + r() * 60 * Math.abs(posicao - 0.5) * 2 + r() * 18;
+    const fim = 394 - r() * 70 * Math.abs(posicao - 0.5) * 2 - r() * 22;
+    const largura = 3 + r() * 4.5;
+    const pontos: [number, number][] = [];
+    for (let y = inicio; y <= fim; y += 22) {
+      // leve curva do pincel e tremor das cerdas
+      const centro = 34 + posicao * 52 + Math.sin(y / 70) * 6 + (r() - 0.5) * 2.2;
+      pontos.push([centro, y]);
+    }
+    pontos.push([34 + posicao * 52 + Math.sin(fim / 70) * 6, fim]);
+    const ida = pontos.map(([x, y]) => `${(x - largura / 2).toFixed(1)},${y.toFixed(1)}`);
+    const volta = pontos
+      .slice()
+      .reverse()
+      .map(([x, y]) => `${(x + largura / 2 + (r() - 0.5) * 1.5).toFixed(1)},${y.toFixed(1)}`);
+    caminhos.push({ d: `M${ida.join(' L')} L${volta.join(' L')}Z`, opacidade: 0.72 + r() * 0.28 });
+  }
+  return caminhos;
+}
+
 /**
- * Pinceladas de tinta (bordas do hero, do "Sobre" e da galeria).
- * Três traços irregulares sobrepostos, na cor atual (currentColor).
+ * Pincelada seca de tinta (bordas do hero, do "Sobre" e da galeria):
+ * faixa larga formada por cerdas de comprimentos irregulares, na cor atual.
  */
-export function Pincelada({ className, style }: Base) {
+export function Pincelada({ className, style, semente = 7 }: Base & { semente?: number }) {
   return (
-    <svg viewBox="0 0 120 400" className={cx('pointer-events-none', className)} style={style} aria-hidden="true" focusable="false">
+    <svg viewBox="0 0 120 400" preserveAspectRatio="none" className={cx('pointer-events-none', className)} style={style} aria-hidden="true" focusable="false">
       <g fill="currentColor">
-        <path d="M58 4c9 2 14 18 13 40-2 41-15 88-20 131-6 52 6 97 2 146-2 31-9 59-18 75-4 1-7-3-6-9 6-36 9-73 6-112-4-55-12-104-5-158 5-41 10-80 18-108 3-4 6-6 10-5z" />
-        <path
-          d="M86 30c6 0 8 12 6 26-5 46-19 93-23 141-4 49 8 96 4 139-2 20-7 37-13 47-3 0-5-4-4-9 5-35 4-74 0-115-5-51-3-101 9-151 6-30 13-61 21-78z"
-          opacity="0.75"
-        />
-        <path d="M29 60c4 1 5 9 4 19-4 52-1 104 3 155 3 42 1 82-7 111-2 2-5 0-5-4 1-46-6-93-8-140-2-47 2-96 9-131 1-6 2-10 4-10z" opacity="0.55" />
-        <circle cx="96" cy="22" r="3" />
-        <circle cx="20" cy="372" r="2.5" />
-        <circle cx="74" cy="392" r="2" opacity="0.7" />
+        {cerdas(semente).map((c, i) => (
+          <path key={i} d={c.d} opacity={c.opacidade} />
+        ))}
+        <circle cx="96" cy="18" r="3" />
+        <circle cx="22" cy="380" r="2.5" />
+        <circle cx="88" cy="396" r="2" opacity="0.7" />
       </g>
     </svg>
   );

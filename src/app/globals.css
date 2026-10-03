@@ -34,8 +34,9 @@
   --text-eyebrow: 0.75rem;
   --text-eyebrow--letter-spacing: 0.12em;
   --text-eyebrow--font-weight: 700;
-  --text-hero: clamp(2.6rem, 1.4rem + 4.6vw, 4.75rem);
-  --text-hero--line-height: 0.98;
+  /* medido na referência: ~54px a 1440px, entrelinha 1.07 */
+  --text-hero: clamp(2.35rem, 1.1rem + 2.6vw, 3.6rem);
+  --text-hero--line-height: 1.07;
   --text-section: clamp(1.6rem, 1.2rem + 1.5vw, 2.25rem);
   --text-section--line-height: 1.12;
 
@@ -67,6 +68,11 @@
   --section-y: clamp(3rem, 2rem + 4vw, 5.5rem);
   --section-y-sm: clamp(2rem, 1.5rem + 2vw, 3rem);
   --header-h: 4.5rem;
+}
+@media (width >= 64rem) {
+  :root {
+    --header-h: 5.5rem; /* ~88px, como na referência */
+  }
 }
 @media (width >= 40rem) {
   :root {
