@@ -1,10 +1,10 @@
 # Pendências de conteúdo
 
-Gerado por `npm run pendencias` a partir de `src/data/pendencias.ts`. Não edite à mão.
+Gerado por `npm run pendencias` a partir de `src/content/pendencias.ts`. Não edite à mão.
 
-Nada desta lista aparece no site publicado. Em `npm run dev`, cada item aparece como um aviso tracejado em vermelho no ponto da página onde a informação entraria.
+Nada desta lista aparece no site publicado. Em `npm run dev`, cada item aparece como um aviso tracejado em vermelho (componente `<Pendente>`) no ponto da página onde a informação entraria.
 
-Total: **20**
+Total: **23**
 
 ## Nome jurídico da organização
 
@@ -95,6 +95,24 @@ Total: **20**
 - **id:** `privacidade-data`
 - **Onde:** Política de Privacidade
 - **Situação:** A política anterior promete exibir a data de atualização, mas não exibe. Definir a data na aprovação.
+
+## Chave PIX para doações
+
+- **id:** `pix-validacao`
+- **Onde:** Seção Apoie e página /apoie
+- **Situação:** O site anterior publica o CNPJ 62.212.632/0001-76 como chave PIX. Na versão em Next.js a chave só aparece depois que o Instituto confirmar que ela está ativa e em nome da organização.
+
+## Versão branca do logotipo
+
+- **id:** `logo-branco`
+- **Onde:** Header e rodapé
+- **Situação:** O design aprovado usa um logo diferente do oficial. Será usada uma versão branca derivada do logotipo oficial (header escuro e rodapé). Confirmar com o Instituto se existe arquivo oficial dessa versão.
+
+## Textos curtos vindos do design aprovado
+
+- **id:** `textos-design`
+- **Onde:** Home e cards de projetos
+- **Situação:** Pilares, descrições curtas dos projetos (ex.: Sarau Trançado "Música, poesia e cultura da nossa comunidade") e frases da home vêm da imagem aprovada, não do site anterior. Confirmar que descrevem as atividades reais.
 
 ## Contas do módulo de cursos (Supabase e Cloudflare Turnstile)
 

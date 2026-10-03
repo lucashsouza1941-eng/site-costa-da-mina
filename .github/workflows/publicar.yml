@@ -28,23 +28,23 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
       - run: npm ci
-      - name: Build
+      - name: Tipos e testes
+        run: npm run typecheck && npm test
+      - name: Build (exportação estática)
         run: npm run build
         env:
           SITE_URL: ${{ steps.pages.outputs.origin }}
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
           # Módulo de cursos: só valores públicos (Settings → Variables).
           # A chave de serviço do Supabase NUNCA entra aqui.
-          PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL }}
-          PUBLIC_SUPABASE_ANON_KEY: ${{ vars.PUBLIC_SUPABASE_ANON_KEY }}
-          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
-      - name: Testes
-        run: npm test
-        env:
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
+      - name: Verificar o site gerado
+        run: node --test tests/build/*.test.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: out
 
   deploy:
     needs: build

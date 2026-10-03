@@ -1,0 +1,154 @@
+/* =====================================================================
+   Instituto Costa da Mina · Design System
+   Cores extraídas por região da imagem aprovada (docs/DESIGN-SYSTEM.md).
+   ===================================================================== */
+
+@import 'tailwindcss';
+
+@theme {
+  /* --- cores principais (nomes pedidos no briefing) --- */
+  --color-primary: #5f267d; /* roxo dos botões */
+  --color-primary-dark: #2e113c; /* faixas Beco da Mina e Apoie */
+  --color-accent: #f8b019; /* amarelo/dourado dos botões e datas */
+  --color-background: #fbf5ea; /* creme de fundo */
+  --color-surface: #fef8f1; /* cards */
+  --color-text: #161522; /* títulos e texto */
+  --color-muted: #625a65; /* textos secundários */
+  --color-border: #e7ded2; /* bordas e divisórias */
+
+  /* --- apoio --- */
+  --color-primary-deep: #170927; /* roxo mais profundo (degradês) */
+  --color-primary-soft: #efe4f4; /* fundo de etiquetas roxas */
+  --color-accent-hover: #e89f05;
+  --color-accent-soft: #fde7b0;
+  /* rótulos (eyebrows). O laranja do design (#e08a1e) não tem contraste
+     suficiente em texto pequeno sobre o creme; usamos um tom mais fechado. */
+  --color-label-vinho: #9e4d6c;
+  --color-label-laranja: #a55405;
+  --color-graphite: #0a0d13; /* rodapé */
+  --color-graphite-soft: #1b1f29;
+  --color-white: #ffffff;
+  --color-brush-magenta: #c2367c; /* pincelada da galeria */
+
+  /* --- tipografia (famílias no bloco @theme inline abaixo) --- */
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--letter-spacing: 0.12em;
+  --text-eyebrow--font-weight: 700;
+  --text-hero: clamp(2.6rem, 1.4rem + 4.6vw, 4.75rem);
+  --text-hero--line-height: 0.98;
+  --text-section: clamp(1.6rem, 1.2rem + 1.5vw, 2.25rem);
+  --text-section--line-height: 1.12;
+
+  /* --- raios e sombras --- */
+  --radius-card: 0.5rem;
+  --radius-panel: 1rem;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgb(22 21 34 / 0.05), 0 8px 24px -12px rgb(46 17 60 / 0.22);
+  --shadow-raised: 0 18px 40px -18px rgb(23 9 39 / 0.45);
+
+  /* --- breakpoints (padrão do Tailwind + celular pequeno) --- */
+  --breakpoint-xs: 25rem; /* 400px */
+
+  /* --- larguras --- */
+  --container-site: 77.5rem; /* 1240px de conteúdo, como no design */
+}
+
+/* Fontes vindas do next/font como variáveis CSS */
+@theme inline {
+  --font-display: var(--font-barlow-condensed), 'Arial Narrow', sans-serif;
+  --font-heading: var(--font-barlow), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-script: var(--font-caveat), cursive;
+}
+
+/* --- espaçamentos de layout (tokens semânticos) --- */
+:root {
+  --gutter: 1rem;
+  --section-y: clamp(3rem, 2rem + 4vw, 5.5rem);
+  --section-y-sm: clamp(2rem, 1.5rem + 2vw, 3rem);
+  --header-h: 4.5rem;
+}
+@media (width >= 40rem) {
+  :root {
+    --gutter: 1.5rem;
+  }
+}
+@media (width >= 64rem) {
+  :root {
+    --gutter: 2rem;
+  }
+}
+
+/* Container do site: largura do design + respiro lateral */
+@utility container-site {
+  width: 100%;
+  max-width: calc(var(--container-site) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility section-y {
+  padding-block: var(--section-y);
+}
+
+@utility section-y-sm {
+  padding-block: var(--section-y-sm);
+}
+
+/* --- base --- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-primary-deep);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
