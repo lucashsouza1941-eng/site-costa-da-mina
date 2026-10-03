@@ -4,7 +4,7 @@ Gerado por `npm run pendencias` a partir de `src/content/pendencias.ts`. Não ed
 
 Nada desta lista aparece no site publicado. Em `npm run dev`, cada item aparece como um aviso tracejado em vermelho (componente `<Pendente>`) no ponto da página onde a informação entraria.
 
-Total: **23**
+Total: **24**
 
 ## Nome jurídico da organização
 
@@ -81,8 +81,14 @@ Total: **23**
 ## Fotos em alta resolução
 
 - **id:** `fotos-alta-resolucao`
-- **Onde:** Beco da Mina e página inicial
-- **Situação:** Várias fotos do Beco da Mina só existiam no site anterior como uma colagem de 1920×300 px; os recortes ficam pequenos (cerca de 260 px de largura). Pedir os arquivos originais ao Instituto.
+- **Onde:** Home inteira, projetos e galeria
+- **Situação:** O design aprovado pede fotos grandes (hero de 1920 px ou mais, Sobre, Beco, Impacto, Apoie, galeria). O site atual só tem: murais do Beco recortados de uma colagem de 300 px de altura, quadros de vídeo de 480 px e um retrato de 500 px já em círculo. A única peça grande é a ilustração Brasil–África (1920 px). Pedir ao Instituto os originais (fotos dos posts do Instagram, murais, oficinas, território). Lista completa em docs/IMAGENS.md.
+
+## Identificação e autorização das pessoas nas fotos
+
+- **id:** `identificacao-pessoas`
+- **Onde:** Sobre o Instituto, Beco da Mina, galeria
+- **Situação:** Nenhuma foto do acervo leva nome de pessoa. O retrato usado no site atual ao lado da citação de Helaine Cristina provavelmente é dela, e há fotos de artistas do Beco e de participantes das oficinas. Confirmar quem aparece e se há autorização de uso de imagem antes de nomear.
 
 ## QR Code da página "Sobre"
 

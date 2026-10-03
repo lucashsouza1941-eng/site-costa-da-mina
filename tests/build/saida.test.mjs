@@ -47,3 +47,23 @@ test('nenhum segredo e nenhuma imagem carregada do site antigo', () => {
     assert.doesNotMatch(c, /institutocostadamina\.com\.br\/wp-content/, `${nome}: hotlink do site antigo`);
   }
 });
+
+test('toda imagem e vídeo referenciados existem no site gerado', () => {
+  const base = (process.env.BASE_PATH ?? '').replace(/\/$/, '');
+  const faltando = new Set();
+  for (const { nome, conteudo } of html) {
+    for (const [, url] of conteudo.matchAll(/(?:src|poster)="([^"]+\.(?:webp|png|jpe?g|mp4|svg))"/g)) {
+      if (/^https?:/.test(url)) continue;
+      const caminho = url.slice(base.length).split('?')[0];
+      if (!existsSync(join(out, caminho))) faltando.add(`${nome} → ${url}`);
+    }
+    for (const [, lista] of conteudo.matchAll(/srcSet="([^"]+)"/gi)) {
+      for (const parte of lista.split(',')) {
+        const url = parte.trim().split(' ')[0];
+        const caminho = url.slice(base.length);
+        if (!existsSync(join(out, caminho))) faltando.add(`${nome} → ${url}`);
+      }
+    }
+  }
+  assert.deepEqual([...faltando], []);
+});

@@ -102,8 +102,15 @@ export const pendencias = [
     id: 'fotos-alta-resolucao',
     assunto: 'Fotos em alta resolução',
     situacao:
-      'Várias fotos do Beco da Mina só existiam no site anterior como uma colagem de 1920×300 px; os recortes ficam pequenos (cerca de 260 px de largura). Pedir os arquivos originais ao Instituto.',
-    onde: 'Beco da Mina e página inicial',
+      'O design aprovado pede fotos grandes (hero de 1920 px ou mais, Sobre, Beco, Impacto, Apoie, galeria). O site atual só tem: murais do Beco recortados de uma colagem de 300 px de altura, quadros de vídeo de 480 px e um retrato de 500 px já em círculo. A única peça grande é a ilustração Brasil–África (1920 px). Pedir ao Instituto os originais (fotos dos posts do Instagram, murais, oficinas, território). Lista completa em docs/IMAGENS.md.',
+    onde: 'Home inteira, projetos e galeria',
+  },
+  {
+    id: 'identificacao-pessoas',
+    assunto: 'Identificação e autorização das pessoas nas fotos',
+    situacao:
+      'Nenhuma foto do acervo leva nome de pessoa. O retrato usado no site atual ao lado da citação de Helaine Cristina provavelmente é dela, e há fotos de artistas do Beco e de participantes das oficinas. Confirmar quem aparece e se há autorização de uso de imagem antes de nomear.',
+    onde: 'Sobre o Instituto, Beco da Mina, galeria',
   },
   {
     id: 'qr-code',

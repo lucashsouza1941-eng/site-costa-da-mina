@@ -70,7 +70,8 @@ export const noticias: Noticia[] = [
   },
 ];
 
-/** Preenchida na Fase 2 com as fotografias oficiais. */
+/** Itens extras da galeria. As fotos do acervo oficial entram automaticamente
+ *  (scripts/imagens/fontes.mjs, campo `galeria`). */
 export const galeria: ItemGaleria[] = [];
 
 export const parceiros: Parceiro[] = Array.from({ length: 6 }, (_, i) => ({

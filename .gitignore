@@ -7,3 +7,7 @@ next-env.d.ts
 .env.*
 .DS_Store
 Thumbs.db
+
+# imagens: originais baixados (cache) e variantes geradas no build
+.cache/
+public/_img/

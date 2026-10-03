@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import { LARGURAS_IMAGEM, LARGURAS_TELA } from './src/lib/imagens/larguras';
 
 // Exportação estática para o GitHub Pages (endereço temporário).
 // BASE_PATH vem do workflow de publicação (ex.: "/site-costa-da-mina").
@@ -14,11 +15,13 @@ const config: NextConfig = {
   trailingSlash: true,
   basePath: basePath || undefined,
   images: {
-    // O Pages não roda o otimizador do Next: as variantes AVIF/WebP são
-    // geradas no build pelo script de imagens (Fase 2) e servidas por um
-    // loader próprio.
+    // O Pages não roda o otimizador do Next: as variantes WebP por largura
+    // são geradas no build (scripts/imagens/variantes.mjs) e o loader
+    // próprio aponta para elas.
     loader: 'custom',
     loaderFile: './src/lib/imagens/loader.ts',
+    deviceSizes: [...LARGURAS_TELA],
+    imageSizes: [...LARGURAS_IMAGEM],
   },
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,

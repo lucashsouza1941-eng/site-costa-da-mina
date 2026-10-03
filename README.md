@@ -7,6 +7,7 @@ Novo site oficial do Instituto Costa da Mina (Cidade Ademar, Zona Sul de São Pa
 - **Design system:** [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)
 - **Conteúdo de referência do site anterior:** [docs/INVENTARIO.md](docs/INVENTARIO.md)
 - **O que falta confirmar:** [docs/PENDENCIAS.md](docs/PENDENCIAS.md)
+- **Imagens (acervo oficial, origem de cada arquivo, o que falta):** [docs/IMAGENS.md](docs/IMAGENS.md)
 - **Módulo de cursos (inscrições e chamada):** [docs/CURSOS.md](docs/CURSOS.md)
 
 ## Como rodar
@@ -34,6 +35,18 @@ npm run pendencias
 ```
 
 Lista as pendências e atualiza `docs/PENDENCIAS.md`.
+
+## Imagens
+
+As imagens oficiais vêm do site atual, listadas uma a uma em `scripts/imagens/fontes.mjs` (origem, recorte, destino e texto alternativo).
+
+```bash
+npm run imagens:baixar
+```
+
+Precisa de internet e de ffmpeg (variável `FFMPEG` se não estiver no PATH). Baixa, trata e grava as matrizes WebP em `public/images`, os dados em `src/content/acervo.gerado.json` e o inventário em `docs/IMAGENS.md`. Só é preciso rodar quando o acervo mudar; as matrizes ficam no git.
+
+As variantes por largura (`public/_img`, fora do git) são geradas automaticamente antes do `dev` e do `build` (`npm run imagens:variantes`). O loader do `next/image` aponta para elas, porque o GitHub Pages não tem o otimizador de imagens do Next.
 
 ## Arquitetura
 

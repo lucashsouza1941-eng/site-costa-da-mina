@@ -1,6 +1,8 @@
 // Vitrine do design system. Só em desenvolvimento: a extensão .dev.tsx
 // não é reconhecida no build de produção (next.config.ts).
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import { todasAsImagens } from '@/content/acervo';
 import { Container } from '@/components/ui/Container';
 import { Botao } from '@/components/ui/Botao';
 import { Rotulo } from '@/components/ui/Rotulo';
@@ -182,6 +184,30 @@ export default function DesignSystem() {
               <BordaOndulada className="h-8 text-background" />
             </div>
           </div>
+        </Bloco>
+
+        <Bloco titulo={`Acervo oficial (${todasAsImagens().length} imagens · next/image + variantes)`}>
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+            {todasAsImagens().map((i) => (
+              <li key={i.id} className="overflow-hidden rounded-card border border-border bg-white">
+                <div className={i.id.includes('branco') ? 'bg-primary-dark p-2' : 'bg-[#eee] p-2'}>
+                  <Image
+                    src={i.src}
+                    alt={i.alt}
+                    width={i.largura}
+                    height={i.altura}
+                    sizes="(min-width: 1024px) 180px, 45vw"
+                    className="mx-auto h-28 w-auto object-contain"
+                  />
+                </div>
+                <p className="p-2 text-[11px] leading-tight text-muted">
+                  <strong className="block text-text">{i.id}</strong>
+                  {i.largura}×{i.altura} · {i.categoria}
+                  {i.galeria ? ' · galeria' : ''}
+                </p>
+              </li>
+            ))}
+          </ul>
         </Bloco>
 
         <Bloco titulo="Raios, sombras e espaçamentos">

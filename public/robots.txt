@@ -1,3 +1,0 @@
-# Endereço temporário: não indexar até a aprovação final.
-User-agent: *
-Disallow: /

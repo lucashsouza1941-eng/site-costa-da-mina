@@ -5,13 +5,17 @@
   "type": "module",
   "description": "Site institucional do Instituto Costa da Mina — Cidade Ademar, Zona Sul de São Paulo.",
   "scripts": {
+    "predev": "node scripts/imagens/variantes.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/imagens/variantes.mjs",
     "build": "next build",
     "start": "npx serve out",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
     "verificar": "npm run typecheck && npm test && npm run build && node --test tests/build/*.test.mjs",
-    "pendencias": "node scripts/pendencias.mjs"
+    "pendencias": "node scripts/pendencias.mjs",
+    "imagens:baixar": "node scripts/imagens/baixar.mjs",
+    "imagens:variantes": "node scripts/imagens/variantes.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",

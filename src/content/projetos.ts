@@ -1,7 +1,8 @@
 // Projetos do Instituto. Textos longos: site anterior (docs/INVENTARIO.md).
 // Textos curtos dos cards: design aprovado pela equipe.
-// Imagens: entram na Fase 2 (docs/IMAGENS.md).
+// Imagens: acervo oficial (docs/IMAGENS.md).
 import type { Projeto } from './tipos.ts';
+import { imagem } from './acervo.ts';
 
 export const projetos: Projeto[] = [
   {
@@ -19,7 +20,19 @@ export const projetos: Projeto[] = [
       { rotulo: 'Arte', valor: 'Waldir Age e equipe (Age Ação Visual)' },
       { rotulo: 'Linguagem', valor: 'Muralismo e arte urbana' },
     ],
-    fotos: [],
+    capa: imagem('beco-mural-trancistas'),
+    marca: imagem('beco-cartaz'),
+    fotos: [
+      imagem('beco-antes'),
+      imagem('beco-esboco'),
+      imagem('beco-pintura'),
+      imagem('beco-artistas'),
+      imagem('beco-fachada'),
+      imagem('beco-mural-rosto'),
+      imagem('beco-letreiro'),
+      imagem('beco-adesivo-mural'),
+      imagem('beco-adesivo-rua'),
+    ],
   },
   {
     slug: 'trancando-o-futuro',
@@ -42,7 +55,9 @@ export const projetos: Projeto[] = [
       autoria: 'Helaine Cristina',
       papel: 'Trancista e presidente do Instituto',
     },
-    fotos: [],
+    capa: imagem('trancando-oficina'),
+    marca: imagem('trancando-marca'),
+    fotos: [imagem('trancando-oficina-2'), imagem('trancando-oficina-3'), imagem('trancando-cartaz')],
   },
   {
     slug: 'tranca-amiga',
@@ -59,7 +74,9 @@ export const projetos: Projeto[] = [
       { rotulo: 'Para quem', valor: 'Pessoas da comunidade com entrevistas de emprego, eventos e outros momentos importantes' },
       { rotulo: 'Quem conduz', valor: 'Trancista com mais de 30 anos de experiência' },
     ],
-    fotos: [],
+    capa: imagem('tranca-amiga-cartaz'),
+    marca: imagem('tranca-amiga-marca'),
+    fotos: [imagem('tranca-amiga-banner')],
   },
   {
     slug: 'sarau-trancado',
@@ -72,6 +89,7 @@ export const projetos: Projeto[] = [
     ],
     fichas: [{ rotulo: 'Instagram', valor: '@sarau.trancado' }],
     links: [{ rotulo: 'Seguir @sarau.trancado', url: 'https://www.instagram.com/sarau.trancado/' }],
+    capa: imagem('sarau-cartaz'),
     fotos: [],
   },
 ];

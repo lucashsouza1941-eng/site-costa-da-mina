@@ -2,6 +2,7 @@
 // diretamente: quando houver CMS ou painel (/admin), só este arquivo muda.
 import { projetos } from '../content/projetos.ts';
 import { agenda, galeria, indicadores, noticias, parceiros } from '../content/colecoes.ts';
+import { fotosDaGaleria } from '../content/acervo.ts';
 import type { Demonstracao, Evento, Noticia, SlugProjeto } from '../content/tipos.ts';
 
 const mostrarExemplos = () => process.env.NODE_ENV !== 'production';
@@ -28,6 +29,7 @@ export function listarNoticias(limite?: number): Noticia[] {
 
 export const buscarNoticia = (slug: string) => semExemplos(noticias).find((n) => n.slug === slug);
 
-export const listarGaleria = () => semExemplos(galeria);
+/** Fotos oficiais do acervo marcadas para a galeria + itens extras cadastrados. */
+export const listarGaleria = () => [...fotosDaGaleria(), ...semExemplos(galeria)];
 export const listarParceiros = () => semExemplos(parceiros);
 export const listarIndicadores = () => indicadores;

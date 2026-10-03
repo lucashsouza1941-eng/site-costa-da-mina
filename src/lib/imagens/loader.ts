@@ -1,13 +1,19 @@
-// Loader do next/image para exportação estática.
-// Fase 1: devolve o arquivo original (com o basePath). Na Fase 2 o script
-// de imagens gera variantes AVIF/WebP por largura e este loader passa a
-// apontar para elas.
+'use client';
+
+// Loader do next/image para exportação estática (GitHub Pages).
+// Matrizes em /images/…/nome.webp viram /_img/…/nome-<largura>.webp,
+// variantes geradas no build por scripts/imagens/variantes.mjs.
+import { caminhoDaVariante, LARGURAS } from './larguras';
+
 type Parametros = { src: string; width: number; quality?: number };
 
 export default function carregarImagem({ src, width }: Parametros): string {
   if (/^https?:\/\//.test(src)) return src;
   const base = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
-  // o parâmetro de largura não altera o arquivo estático, mas mantém o
-  // contrato do next/image (uma URL por largura)
-  return `${base}${src}?w=${width}`;
+  if (src.startsWith('/images/') && src.endsWith('.webp')) {
+    // largura disponível mais próxima (o next/image só pede larguras da lista)
+    const largura = LARGURAS.find((l) => l >= width) ?? LARGURAS[LARGURAS.length - 1];
+    return `${base}${caminhoDaVariante(src, largura)}`;
+  }
+  return `${base}${src}`;
 }
