@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import CabecaPagina from '../../components/CabecaPagina.astro';
+import CartaoProjeto from '../../components/CartaoProjeto.astro';
+import { projetos } from '../../data/projetos';
+---
+
+<Base
+  titulo="Projetos"
+  descricao="Beco da Mina, Trançando o Futuro, Trança Amiga e Sarau Trançado: os projetos do Instituto Costa da Mina."
+>
+  <CabecaPagina sobrelinha="Projetos" titulo="Arte, tranças e encontro no território.">
+    <p>
+      Ações comunitárias construídas da comunidade para a comunidade, baseadas em solidariedade, troca de saberes e
+      valorização das raízes culturais.
+    </p>
+  </CabecaPagina>
+
+  <section class="secao">
+    <div class="envelope">
+      <ul class="lista" role="list">
+        {
+          projetos.map((projeto) => (
+            <li>
+              <CartaoProjeto projeto={projeto} nivel="h2" />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lista {
+    display: grid;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .lista > li {
+    display: grid;
+  }
+  @media (min-width: 40rem) {
+    .lista {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+    }
+  }
+</style>

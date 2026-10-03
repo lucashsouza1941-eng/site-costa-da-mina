@@ -1,0 +1,38 @@
+---
+/**
+ * Marcador interno de informação não confirmada.
+ * Só existe em `npm run dev`: no build de produção não gera HTML algum.
+ */
+import { buscarPendencia, type IdPendencia } from '../data/pendencias';
+
+interface Props {
+  id: IdPendencia;
+}
+
+const pendencia = buscarPendencia(Astro.props.id);
+const visivel = import.meta.env.DEV;
+---
+
+{
+  visivel && (
+    <aside class="pendente" data-pendente={pendencia.id}>
+      <strong>Pendente · {pendencia.assunto}</strong>
+      <span>{pendencia.situacao}</span>
+    </aside>
+  )
+}
+
+<style>
+  .pendente {
+    display: grid;
+    gap: 0.25rem;
+    margin-block: 1rem;
+    padding: 0.75rem 1rem;
+    border: 2px dashed #d12f2f;
+    border-radius: 0.75rem;
+    background: repeating-linear-gradient(-45deg, #fff4f1, #fff4f1 10px, #ffe9e3 10px, #ffe9e3 20px);
+    color: #6b1111;
+    font: 500 0.85rem/1.4 system-ui, sans-serif;
+    text-align: left;
+  }
+</style>

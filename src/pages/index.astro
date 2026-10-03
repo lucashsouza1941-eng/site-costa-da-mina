@@ -1,0 +1,432 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Tranca from '../components/Tranca.astro';
+import Icone from '../components/Icone.astro';
+import CartaoProjeto from '../components/CartaoProjeto.astro';
+import Pix from '../components/Pix.astro';
+import { instituto, linkWhatsApp, metas } from '../data/instituto';
+import { projetos } from '../data/projetos';
+import { rota } from '../lib/rota';
+
+import selo from '../assets/marca/selo-amarelo.png';
+import helaine from '../assets/fotos/helaine.png';
+import becoAntes from '../assets/fotos/beco-antes.jpg';
+import becoDepois from '../assets/fotos/beco-mural-casa-roxa.jpg';
+---
+
+<Base>
+  <!-- ============ abertura ============ -->
+  <section class="abertura">
+    <div class="envelope abertura__grade">
+      <div class="abertura__texto">
+        <p class="sobrelinha">Cidade Ademar · Zona Sul · São Paulo</p>
+        <h1 class="abertura__titulo">
+          <span>Raízes que educam,</span>
+          <span>cultura que transforma,</span>
+          <span>futuro que floresce.</span>
+        </h1>
+        <p class="abertura__intro">
+          O {instituto.nome} nasce da mobilização de agentes culturais da própria comunidade para ampliar o acesso à
+          cultura, à educação e a oportunidades no território.
+        </p>
+        <div class="grupo-botoes">
+          <a class="botao" href={rota('projetos/')}>Conheça os projetos <Icone nome="seta" /></a>
+          <a class="botao botao--contorno" href={rota('sobre/')}>Nossa história</a>
+        </div>
+      </div>
+      <div class="abertura__selo">
+        <Image
+          src={selo}
+          alt="Símbolo do Instituto: uma cadeira de salão com raízes, sobre círculo amarelo."
+          widths={[280, 420, 560]}
+          sizes="(min-width: 56rem) 26rem, 70vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+    <Tranca fundo="var(--roxo-900)" cores={['var(--amarelo)', 'var(--lilas)', 'var(--laranja)']} />
+  </section>
+
+  <!-- ============ a cadeira ============ -->
+  <section class="secao cadeira">
+    <div class="envelope cadeira__grade">
+      <figure class="cadeira__foto">
+        <Image src={helaine} alt="Helaine Cristina, sorrindo, de avental preto e blusa vermelha." width={420} densities={[1, 2]} />
+        <figcaption>{instituto.fundadora.nome}, fundadora</figcaption>
+      </figure>
+      <div>
+        <p class="sobrelinha">Nosso símbolo</p>
+        <h2>Uma cadeira de trancista que criou raízes.</h2>
+        <div class="prosa">
+          <p class="texto-grande">
+            Tudo começou no salão {instituto.fundadora.salao}, ponto de encontro, cuidado e troca dentro do território.
+          </p>
+          <p>
+            Trancista com mais de 30 anos de experiência, Helaine é uma mulher preta e periférica que aprendeu a trançar
+            ainda na infância com sua mãe. Ao longo dos anos, acolheu em sua cadeira inúmeras pessoas e histórias. Essa
+            mesma cadeira, espaço de escuta, cuidado e transformação, tornou-se o símbolo do Instituto: o encontro entre
+            ancestralidade, identidade e futuro.
+          </p>
+        </div>
+        <a class="link-seta" href={rota('sobre/')}>Leia a história completa <Icone nome="seta" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ projetos ============ -->
+  <section class="secao secao--clara" aria-labelledby="titulo-projetos">
+    <div class="envelope">
+      <div class="cabeca-secao">
+        <p class="sobrelinha">Projetos</p>
+        <h2 id="titulo-projetos">Ações construídas da comunidade para a comunidade.</h2>
+      </div>
+      <ul class="grade-projetos" role="list">
+        {
+          projetos.map((projeto) => (
+            <li>
+              <CartaoProjeto projeto={projeto} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ território ============ -->
+  <section class="secao territorio" aria-labelledby="titulo-territorio">
+    <div class="envelope territorio__grade">
+      <div>
+        <p class="sobrelinha">Beco da Mina</p>
+        <h2 id="titulo-territorio">De beco esquecido a território de arte.</h2>
+        <p class="texto-grande texto-suave">
+          A primeira ação do Instituto foi pintar os murais da Rua Osório de Castro, na Vila Inglesa: arte, memória e
+          pertencimento no lugar do descarte irregular de lixo.
+        </p>
+        <a class="link-seta" href={rota('projetos/beco-da-mina/')}>Ver o projeto <Icone nome="seta" /></a>
+      </div>
+      <div class="antes-depois">
+        <figure>
+          <Image src={becoAntes} alt="A rua antes: muros cinzas, em preto e branco." width={390} densities={[1, 1.5]} />
+          <figcaption>Antes</figcaption>
+        </figure>
+        <figure>
+          <Image
+            src={becoDepois}
+            alt="A rua depois: fachada roxa com mural de mulheres negras trançando os cabelos."
+            width={266}
+            densities={[1, 1.5]}
+          />
+          <figcaption>Depois</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ metas ============ -->
+  <section class="secao secao--escura" aria-labelledby="titulo-metas">
+    <div class="envelope">
+      <div class="cabeca-secao">
+        <p class="sobrelinha">Metas do Instituto</p>
+        <h2 id="titulo-metas">{instituto.chamado}</h2>
+        <p class="texto-grande texto-suave prosa">
+          Desenvolvimento social, cultural, educacional e profissionalizante de pessoas em situação de vulnerabilidade,
+          por meio de ações integradas que garantem direitos e ampliam oportunidades.
+        </p>
+      </div>
+      <ol class="metas" role="list">
+        {
+          metas.map((meta) => (
+            <li>
+              <h3>{meta.titulo}</h3>
+              <p>{meta.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ contribua ============ -->
+  <section class="secao contribua" aria-labelledby="titulo-contribua">
+    <div class="envelope contribua__grade">
+      <div>
+        <p class="sobrelinha">Contribua</p>
+        <h2 id="titulo-contribua">Qualquer valor ajuda muito.</h2>
+        <p class="texto-grande texto-suave">
+          Sua contribuição fortalece os projetos do Instituto no território. Doe pelo PIX usando o CNPJ como chave.
+        </p>
+      </div>
+      <Pix />
+    </div>
+  </section>
+
+  <!-- ============ redes ============ -->
+  <section class="secao secao--roxa redes" aria-labelledby="titulo-redes">
+    <div class="envelope redes__grade">
+      <div>
+        <p class="sobrelinha">Acompanhe</p>
+        <h2 id="titulo-redes">As novidades dos projetos estão no Instagram.</h2>
+      </div>
+      <div class="grupo-botoes">
+        <a class="botao" href={instituto.redes.instagram.url} rel="noopener">
+          <Icone nome="instagram" /> @{instituto.redes.instagram.usuario}
+        </a>
+        <a class="botao botao--contorno" href={instituto.redes.sarau.url} rel="noopener">
+          <Icone nome="instagram" /> @{instituto.redes.sarau.usuario}
+        </a>
+        <a class="botao botao--contorno" href={linkWhatsApp()} rel="noopener">
+          <Icone nome="whatsapp" /> WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------- abertura ---------- */
+  .abertura {
+    position: relative;
+    background:
+      radial-gradient(60rem 30rem at 85% 10%, rgb(147 110 228 / 0.35), transparent 60%),
+      radial-gradient(40rem 30rem at 0% 100%, rgb(106 13 115 / 0.7), transparent 70%),
+      var(--roxo-900);
+    color: var(--papel);
+  }
+  .abertura__grade {
+    display: grid;
+    gap: 2rem;
+    padding-block: 2.5rem 3rem;
+  }
+  .abertura .sobrelinha {
+    color: var(--amarelo);
+  }
+  .abertura__titulo {
+    margin-bottom: 1.5rem;
+    font-size: clamp(2.6rem, 1.6rem + 5.2vw, 5.75rem);
+    line-height: 0.98;
+  }
+  .abertura__titulo span {
+    display: block;
+  }
+  .abertura__titulo span:nth-child(2) {
+    color: var(--amarelo);
+  }
+  .abertura__titulo span:nth-child(3) {
+    color: var(--lilas);
+  }
+  .abertura__intro {
+    max-width: 34rem;
+    margin-bottom: 2rem;
+    font-size: var(--t-2);
+    line-height: 1.45;
+    color: color-mix(in srgb, var(--papel) 88%, transparent);
+  }
+  .abertura__selo {
+    justify-self: center;
+    width: min(70vw, 22rem);
+  }
+  .abertura__selo img {
+    width: 100%;
+    filter: drop-shadow(0 30px 40px rgb(0 0 0 / 0.35));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .abertura__selo img {
+      animation: flutuar 7s ease-in-out infinite;
+    }
+    @keyframes flutuar {
+      50% {
+        transform: translateY(-10px) rotate(-2deg);
+      }
+    }
+  }
+  @media (min-width: 56rem) {
+    .abertura__grade {
+      grid-template-columns: 1.5fr 1fr;
+      align-items: center;
+      padding-block: 5rem 5.5rem;
+    }
+    .abertura__selo {
+      width: 100%;
+      max-width: 26rem;
+    }
+  }
+
+  /* ---------- cadeira ---------- */
+  .cadeira__grade {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .cadeira__foto {
+    position: relative;
+    justify-self: center;
+    width: min(78vw, 22rem);
+    margin: 0;
+  }
+  .cadeira__foto::before {
+    content: '';
+    position: absolute;
+    inset: -6% -6% 6% 6%;
+    border-radius: 50%;
+    background: var(--amarelo);
+    z-index: -1;
+  }
+  .cadeira__foto img {
+    width: 100%;
+    border-radius: 50%;
+  }
+  .cadeira__foto figcaption {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: var(--t-0);
+    color: var(--tinta-suave);
+  }
+  .cadeira {
+    isolation: isolate;
+  }
+  @media (min-width: 56rem) {
+    .cadeira__grade {
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+    }
+  }
+
+  /* ---------- projetos ---------- */
+  .grade-projetos {
+    display: grid;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .grade-projetos > li {
+    display: grid;
+  }
+  @media (min-width: 40rem) {
+    .grade-projetos {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 72rem) {
+    .grade-projetos {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* ---------- território ---------- */
+  .territorio__grade {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .antes-depois {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 0.75rem;
+  }
+  .antes-depois figure {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--raio);
+    aspect-ratio: 3 / 4;
+  }
+  .antes-depois figure:first-child {
+    aspect-ratio: auto;
+  }
+  .antes-depois img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .antes-depois figcaption {
+    position: absolute;
+    left: 0.75rem;
+    bottom: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    background: var(--papel);
+    color: var(--roxo-900);
+    font-family: var(--fonte-titulo);
+    font-size: var(--t-0);
+    font-weight: 700;
+  }
+  .antes-depois figure:last-child figcaption {
+    background: var(--amarelo);
+  }
+  @media (min-width: 56rem) {
+    .territorio__grade {
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+    }
+  }
+
+  /* ---------- metas ---------- */
+  .metas {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: meta;
+  }
+  .metas li {
+    counter-increment: meta;
+    position: relative;
+    padding: 1.5rem 1.5rem 1.6rem;
+    border-radius: var(--raio-g);
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.12);
+  }
+  .metas li::before {
+    content: counter(meta, decimal-leading-zero);
+    display: block;
+    margin-bottom: 1rem;
+    font-family: var(--fonte-titulo);
+    font-size: var(--t-3);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--amarelo);
+  }
+  .metas h3 {
+    margin-bottom: 0.4rem;
+  }
+  .metas p {
+    color: color-mix(in srgb, var(--papel) 82%, transparent);
+  }
+  @media (min-width: 48rem) {
+    .metas {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ---------- contribua ---------- */
+  .contribua__grade {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 56rem) {
+    .contribua__grade {
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  /* ---------- redes ---------- */
+  .redes__grade {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .redes h2 {
+    margin: 0;
+  }
+  @media (min-width: 56rem) {
+    .redes__grade {
+      grid-template-columns: 1.3fr 1fr;
+      align-items: end;
+    }
+  }
+</style>

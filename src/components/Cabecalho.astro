@@ -1,0 +1,255 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/marca/logo-horizontal.png';
+import Icone from './Icone.astro';
+import { rota } from '../lib/rota';
+import { linkWhatsApp, instituto } from '../data/instituto';
+import { projetos } from '../data/projetos';
+
+const itens = [
+  { rotulo: 'Sobre', href: rota('sobre/') },
+  { rotulo: 'Projetos', href: rota('projetos/') },
+  { rotulo: 'Contribua', href: rota('contribua/') },
+  { rotulo: 'Contato', href: rota('contato/') },
+];
+
+const atual = Astro.url.pathname;
+const ativo = (href: string) => atual.startsWith(href);
+---
+
+<header class="cabecalho">
+  <div class="envelope cabecalho__linha">
+    <a class="cabecalho__marca" href={rota('/')}>
+      <Image src={logo} alt={instituto.nome} width={168} densities={[1, 2]} loading="eager" />
+    </a>
+
+    <nav class="cabecalho__nav" aria-label="Principal">
+      <ul>
+        {
+          itens.map((item) => (
+            <li>
+              <a href={item.href} aria-current={ativo(item.href) ? 'page' : undefined}>
+                {item.rotulo}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="botao botao--roxo cabecalho__whats" href={linkWhatsApp()} rel="noopener">
+        <Icone nome="whatsapp" /> WhatsApp
+      </a>
+    </nav>
+
+    <button class="cabecalho__abrir" type="button" popovertarget="menu-celular" aria-label="Abrir menu">
+      <Icone nome="menu" />
+      <span>Menu</span>
+    </button>
+  </div>
+
+  <div id="menu-celular" class="menu-celular" popover>
+    <div class="menu-celular__topo">
+      <span class="sobrelinha">Navegação</span>
+      <button type="button" class="menu-celular__fechar" popovertarget="menu-celular" popovertargetaction="hide">
+        <Icone nome="fechar" />
+        <span class="visualmente-oculto">Fechar menu</span>
+      </button>
+    </div>
+    <nav aria-label="Principal (celular)">
+      <ul class="menu-celular__lista">
+        <li><a href={rota('/')}>Início</a></li>
+        {
+          itens.map((item) => (
+            <li>
+              <a href={item.href} aria-current={ativo(item.href) ? 'page' : undefined}>
+                {item.rotulo}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="menu-celular__sub">Projetos</p>
+      <ul class="menu-celular__projetos">
+        {
+          projetos.map((p) => (
+            <li>
+              <a href={rota(`projetos/${p.slug}/`)}>{p.nome}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="grupo-botoes">
+      <a class="botao" href={linkWhatsApp()} rel="noopener"><Icone nome="whatsapp" /> Falar no WhatsApp</a>
+      <a class="botao botao--contorno" href={instituto.redes.instagram.url} rel="noopener"><Icone nome="instagram" /> Instagram</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .cabecalho {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--papel) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--linha);
+  }
+  .cabecalho__linha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4.25rem;
+  }
+  .cabecalho__marca {
+    display: block;
+    flex: none;
+    padding-block: 0.5rem;
+  }
+  .cabecalho__marca img {
+    width: 9.5rem;
+    height: auto;
+  }
+
+  .cabecalho__nav {
+    display: none;
+  }
+
+  .cabecalho__abrir {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--roxo-700);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--roxo-700);
+    font: 700 var(--t-0) / 1 var(--fonte-titulo);
+    cursor: pointer;
+  }
+  .cabecalho__abrir svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  @media (min-width: 56rem) {
+    .cabecalho__abrir {
+      display: none;
+    }
+    .cabecalho__nav {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+    .cabecalho__nav ul {
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .cabecalho__nav ul a {
+      font-family: var(--fonte-titulo);
+      font-weight: 650;
+      text-decoration: none;
+      padding-block: 0.4rem;
+      border-bottom: 3px solid transparent;
+    }
+    .cabecalho__nav ul a:hover,
+    .cabecalho__nav ul a[aria-current='page'] {
+      border-color: var(--amarelo);
+    }
+    .cabecalho__whats {
+      min-height: 2.6rem;
+      padding: 0.55rem 1.1rem;
+      font-size: var(--t-0);
+    }
+  }
+
+  /* ---------- menu do celular ---------- */
+  .menu-celular {
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 1.25rem var(--margem) 2rem;
+    border: 0;
+    background: var(--roxo-900);
+    color: var(--papel);
+    overflow-y: auto;
+  }
+  .menu-celular:popover-open {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .menu-celular::backdrop {
+    background: rgb(28 7 36 / 0.6);
+  }
+  .menu-celular__topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .menu-celular__topo .sobrelinha {
+    margin: 0;
+    color: var(--amarelo);
+  }
+  .menu-celular__fechar {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+  .menu-celular__fechar svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .menu-celular ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .menu-celular__lista a {
+    display: block;
+    padding-block: 0.35rem;
+    font-family: var(--fonte-titulo);
+    font-size: clamp(2rem, 1.5rem + 3vw, 2.75rem);
+    font-weight: 750;
+    font-stretch: 85%;
+    line-height: 1.1;
+    text-decoration: none;
+  }
+  .menu-celular__lista a[aria-current='page'] {
+    color: var(--amarelo);
+  }
+  .menu-celular__sub {
+    margin: 1.5rem 0 0.5rem;
+    font-size: var(--t-0);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lilas);
+  }
+  .menu-celular__projetos {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .menu-celular__projetos a {
+    display: block;
+    padding-block: 0.4rem;
+    font-size: var(--t-2);
+    text-decoration: none;
+  }
+  .menu-celular .grupo-botoes {
+    margin-top: auto;
+  }
+</style>
