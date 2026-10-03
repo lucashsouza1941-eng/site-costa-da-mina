@@ -118,6 +118,34 @@ export const pendencias = [
     onde: 'Política de Privacidade',
   },
   {
+    id: 'contas-cursos',
+    assunto: 'Contas do módulo de cursos (Supabase e Cloudflare Turnstile)',
+    situacao:
+      'O módulo de inscrições e presença está pronto, mas só funciona depois de criar o projeto no Supabase, aplicar a migração, publicar as Edge Functions, criar o site no Turnstile e o primeiro usuário administrador (passo a passo em docs/CURSOS.md). Até lá, as páginas mostram "nenhuma inscrição aberta".',
+    onde: '/cursos/, /presenca/ e /painel/',
+  },
+  {
+    id: 'retencao-cursos',
+    assunto: 'Prazo de guarda dos dados das inscrições',
+    situacao:
+      'A política diz apenas "pelo período necessário". Definir com o Instituto um prazo (por exemplo, até X meses após o fim da turma) e quem faz a exclusão.',
+    onde: 'Política de Privacidade, seção 12',
+  },
+  {
+    id: 'regiao-dados',
+    assunto: 'Região do banco de dados',
+    situacao:
+      'Recomendado criar o projeto Supabase na região São Paulo (sa-east-1). Confirmar a região escolhida e citar na política, se o Instituto quiser.',
+    onde: 'Política de Privacidade, seção 12',
+  },
+  {
+    id: 'menores-cursos',
+    assunto: 'Inscrição de menores de idade',
+    situacao:
+      'Um cartaz antigo cita "+14 anos". O sistema permite definir idade mínima por turma, mas o Instituto precisa decidir a idade e, para menores de 18, se exigirá autorização de responsável (a LGPD pede consentimento de responsável para crianças de até 12 anos).',
+    onde: 'Formulário de inscrição',
+  },
+  {
     id: 'outras-redes',
     assunto: 'Outras redes sociais',
     situacao: 'Só o Instagram (@instituto.costadamina e @sarau.trancado) aparece no site anterior. Confirmar se há Facebook, YouTube ou TikTok oficiais.',

@@ -4,6 +4,7 @@ Novo site do Instituto Costa da Mina (Cidade Ademar, Zona Sul de São Paulo), es
 
 - **Conteúdo de referência:** [docs/INVENTARIO.md](docs/INVENTARIO.md)
 - **O que falta confirmar:** [docs/PENDENCIAS.md](docs/PENDENCIAS.md)
+- **Módulo de cursos (inscrições e chamada):** [docs/CURSOS.md](docs/CURSOS.md)
 
 ## Como rodar
 
@@ -47,6 +48,19 @@ tests/              verificações do HTML gerado
 Regra do projeto: **nenhum número, parceiro, depoimento, data ou resultado inventado.** O que não está confirmado vai para `src/data/pendencias.ts` e é marcado na página com `<Pendente id="…" />`. Em `npm run dev` o marcador aparece como um aviso tracejado em vermelho; no build de produção ele não gera HTML algum (há um teste que garante isso).
 
 Quando o Instituto confirmar uma informação: coloque-a em `instituto.ts` ou `projetos.ts`, apague o item de `pendencias.ts`, remova o `<Pendente>` correspondente e rode `npm run pendencias`.
+
+## Módulo de cursos
+
+Inscrições nos cursos de tranças, lista de espera, painel da equipe e lista de chamada com QR Code. Banco e login no **Supabase**; o site estático só recebe a chave pública. Fica invisível na navegação enquanto não houver turma com inscrições abertas. Arquitetura, custos e passo a passo de configuração em [docs/CURSOS.md](docs/CURSOS.md).
+
+```
+supabase/
+  migrations/      tabelas, regras (funções SQL), RLS e auditoria
+  functions/       Edge Functions públicas: inscricao e presenca
+    _compartilhado/  validação e mensagens usadas também pelo formulário
+src/pages/cursos.astro · presenca.astro · painel.astro
+src/painel/        telas do painel da equipe
+```
 
 ## Publicação
 

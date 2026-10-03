@@ -97,3 +97,7 @@ Registrados para o Instituto; nada foi alterado no WordPress.
 5. Erro de digitação "Transcista" na assinatura da Helaine.
 6. Post "Hello world!" padrão ainda publicado.
 7. Política de Privacidade promete data de atualização, mas não mostra.
+
+## Cursos e inscrições (03/10/2026)
+
+O site anterior não tinha sistema de inscrição: o curso Trançando o Futuro era divulgado por cartaz ("inscrições no local"). O novo módulo de cursos (docs/CURSOS.md) foi criado do zero, sem dados importados. Nenhuma turma, data, vaga ou participante foi cadastrada: tudo será criado pela equipe no painel depois da configuração das contas.

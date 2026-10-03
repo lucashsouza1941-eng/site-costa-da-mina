@@ -4,7 +4,7 @@ Gerado por `npm run pendencias` a partir de `src/data/pendencias.ts`. Não edite
 
 Nada desta lista aparece no site publicado. Em `npm run dev`, cada item aparece como um aviso tracejado em vermelho no ponto da página onde a informação entraria.
 
-Total: **16**
+Total: **20**
 
 ## Nome jurídico da organização
 
@@ -95,6 +95,30 @@ Total: **16**
 - **id:** `privacidade-data`
 - **Onde:** Política de Privacidade
 - **Situação:** A política anterior promete exibir a data de atualização, mas não exibe. Definir a data na aprovação.
+
+## Contas do módulo de cursos (Supabase e Cloudflare Turnstile)
+
+- **id:** `contas-cursos`
+- **Onde:** /cursos/, /presenca/ e /painel/
+- **Situação:** O módulo de inscrições e presença está pronto, mas só funciona depois de criar o projeto no Supabase, aplicar a migração, publicar as Edge Functions, criar o site no Turnstile e o primeiro usuário administrador (passo a passo em docs/CURSOS.md). Até lá, as páginas mostram "nenhuma inscrição aberta".
+
+## Prazo de guarda dos dados das inscrições
+
+- **id:** `retencao-cursos`
+- **Onde:** Política de Privacidade, seção 12
+- **Situação:** A política diz apenas "pelo período necessário". Definir com o Instituto um prazo (por exemplo, até X meses após o fim da turma) e quem faz a exclusão.
+
+## Região do banco de dados
+
+- **id:** `regiao-dados`
+- **Onde:** Política de Privacidade, seção 12
+- **Situação:** Recomendado criar o projeto Supabase na região São Paulo (sa-east-1). Confirmar a região escolhida e citar na política, se o Instituto quiser.
+
+## Inscrição de menores de idade
+
+- **id:** `menores-cursos`
+- **Onde:** Formulário de inscrição
+- **Situação:** Um cartaz antigo cita "+14 anos". O sistema permite definir idade mínima por turma, mas o Instituto precisa decidir a idade e, para menores de 18, se exigirá autorização de responsável (a LGPD pede consentimento de responsável para crianças de até 12 anos).
 
 ## Outras redes sociais
 

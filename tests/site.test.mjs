@@ -33,6 +33,9 @@ test('gera todas as páginas previstas', () => {
     'contribua/index.html',
     'contato/index.html',
     'privacidade/index.html',
+    'cursos/index.html',
+    'presenca/index.html',
+    'painel/index.html',
     '404.html',
   ]) {
     assert.ok(nomes.includes(esperado), `faltou ${esperado}`);
@@ -89,4 +92,78 @@ test('links internos apontam para páginas que existem', () => {
 test('chave PIX e botão de copiar na página Contribua', () => {
   const pagina = paginas.find((p) => p.nome === 'contribua/index.html');
   assert.match(pagina.html, /data-copiar="62\.212\.632\/0001-76"/);
+});
+
+// ------------------------------------------------------------------
+// Módulo de cursos
+
+test('módulo de cursos fica fora da navegação pública', () => {
+  for (const { nome, html } of paginas) {
+    // todo link para /cursos/ precisa estar dentro de um item [data-link-cursos] escondido
+    const itens = html.match(/<li[^>]*data-link-cursos[^>]*>/g) ?? [];
+    for (const li of itens) assert.match(li, /\shidden/, `${nome}: link de cursos visível sem turma aberta`);
+    const linksCursos = (html.match(/<a[^>]+href="[^"]*\/cursos\/"/g) ?? []).length;
+    assert.ok(linksCursos <= itens.length, `${nome}: link para cursos fora do item condicional`);
+    for (const pagina of ['presenca', 'painel']) {
+      assert.doesNotMatch(html, new RegExp(`<a[^>]+href="[^"]*/${pagina}/"`), `${nome} aponta para /${pagina}/`);
+    }
+  }
+});
+
+test('páginas do módulo não entram no sitemap', () => {
+  const sitemaps = readdirSync(dist).filter((n) => n.startsWith('sitemap') && n.endsWith('.xml'));
+  const xml = sitemaps.map((n) => readFileSync(join(dist, n), 'utf8')).join('');
+  for (const pagina of ['/cursos/', '/presenca/', '/painel/']) assert.ok(!xml.includes(pagina), pagina);
+});
+
+test('nenhuma chave administrativa ou segredo vai para o site', () => {
+  // chaves reais (não os nomes que a biblioteca do Supabase cita internamente)
+  const proibidos = [/sb_secret_[A-Za-z0-9_-]{8,}/, /SUPABASE_SERVICE_ROLE_KEY/, /TURNSTILE_SECRET_KEY/, /SAL_TENTATIVAS/];
+  const arquivos = [];
+  const varrer = (dir) => {
+    for (const n of readdirSync(dir)) {
+      const c = join(dir, n);
+      if (statSync(c).isDirectory()) varrer(c);
+      else if (/\.(html|js|css|json|xml|txt)$/.test(n)) arquivos.push(c);
+    }
+  };
+  varrer(dist);
+  for (const arquivo of arquivos) {
+    const conteudo = readFileSync(arquivo, 'utf8');
+    for (const padrao of proibidos) assert.doesNotMatch(conteudo, padrao, `${relative(dist, arquivo)} contém ${padrao}`);
+    // JWT com papel de serviço (chave antiga do Supabase)
+    for (const jwt of conteudo.match(/eyJ[\w-]+\.eyJ[\w-]+\.[\w-]+/g) ?? []) {
+      const carga = JSON.parse(Buffer.from(jwt.split('.')[1], 'base64url').toString());
+      assert.notEqual(carga.role, 'service_role', `${relative(dist, arquivo)} contém chave de serviço`);
+    }
+  }
+});
+
+test('formulário de inscrição: rótulos, consentimento e sem CPF/RG', () => {
+  const { html } = paginas.find((p) => p.nome === 'cursos/index.html');
+  for (const id of ['nome', 'nascimento', 'whatsapp', 'email', 'bairro', 'disponibilidade', 'consentimento']) {
+    assert.match(html, new RegExp(`<label[^>]*for="${id}"`), `campo ${id} sem rótulo`);
+    assert.match(html, new RegExp(`aria-describedby="[^"]*erro-${id}`), `campo ${id} sem ligação com a mensagem de erro`);
+  }
+  assert.match(html, /Para que usamos seus dados/);
+  assert.match(html, /privacidade\//);
+  assert.doesNotMatch(html, /\bCPF\b|\bRG\b/);
+  assert.match(html, /class="armadilha"/, 'campo-armadilha contra robôs');
+});
+
+test('página de presença não registra nada sozinha', () => {
+  const { html } = paginas.find((p) => p.nome === 'presenca/index.html');
+  assert.match(html, /<form[^>]*data-form[^>]*hidden/, 'o formulário começa escondido até confirmar chamada aberta');
+  assert.match(html, /<label[^>]*for="identificador"/);
+});
+
+test('painel: QR Code aponta para a página de presença', () => {
+  const { html } = paginas.find((p) => p.nome === 'painel/index.html');
+  assert.match(html, /<svg[^>]*>.*<path/s, 'QR Code em SVG');
+  assert.match(html, /\/presenca\/<\/p>/);
+});
+
+test('política de privacidade explica os dados dos cursos', () => {
+  const { html } = paginas.find((p) => p.nome === 'privacidade/index.html');
+  assert.match(html, /Inscrições nos cursos/);
 });

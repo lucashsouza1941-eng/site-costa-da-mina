@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import CabecaPagina from '../components/CabecaPagina.astro';
 import Pendente from '../components/Pendente.astro';
 import { instituto, enderecoCompleto } from '../data/instituto';
+import { VERSAO_POLITICA } from '../../supabase/functions/_compartilhado/regras';
 
 // Texto da Política de Privacidade publicada pelo Instituto no site anterior.
 const secoes: { titulo: string; paragrafos?: string[]; lista?: string[]; depois?: string[] }[] = [
@@ -152,8 +153,47 @@ const secoes: { titulo: string; paragrafos?: string[]; lista?: string[]; depois?
         ))
       }
 
+      <section id="cursos">
+        <h2>12. Inscrições nos cursos e lista de presença</h2>
+        <p>Quando você se inscreve em um curso do Instituto, coletamos somente:</p>
+        <ul>
+          <li>nome completo, data de nascimento, WhatsApp, bairro e disponibilidade de horário;</li>
+          <li>e-mail, apenas se você quiser informar;</li>
+          <li>a data, o horário e a forma de cada registro de presença nas aulas.</li>
+        </ul>
+        <p>Não pedimos CPF, RG nem outros documentos na inscrição.</p>
+        <p>
+          <strong>Para que usamos:</strong> organizar as turmas, as vagas e a lista de espera, falar com você sobre as aulas
+          pelo WhatsApp e controlar a frequência. A data de nascimento serve para conferir a idade mínima, quando a turma
+          tiver uma.
+        </p>
+        <p>
+          <strong>Base legal:</strong> o seu consentimento, dado ao marcar a autorização no formulário. Guardamos a data e a
+          versão desta política aceita (versão {VERSAO_POLITICA}).
+        </p>
+        <p>
+          <strong>Quem acessa:</strong> somente pessoas autorizadas da equipe do Instituto, com login individual. A professora
+          vê apenas o nome e a presença de cada participante; telefone e e-mail ficam restritos à coordenação. A lista de
+          participantes nunca é publicada no site. Toda alteração feita pela equipe fica registrada com data, responsável e
+          motivo.
+        </p>
+        <p>
+          <strong>Serviços utilizados:</strong> os dados ficam em um banco de dados contratado de um provedor de nuvem
+          (Supabase). Para impedir envios automáticos, o formulário usa uma verificação anti-robô (Cloudflare Turnstile), que
+          pode tratar dados técnicos de navegação, como o endereço IP. Para limitar tentativas repetidas, guardamos por até um
+          dia apenas um código cifrado derivado do endereço IP, nunca o endereço em si.
+        </p>
+        <p>
+          <strong>Seus direitos:</strong> você pode pedir a correção ou a exclusão dos seus dados pelo e-mail abaixo. Na
+          exclusão, seus dados pessoais são apagados e os registros de presença continuam apenas como números, sem
+          identificação.
+        </p>
+        <Pendente id="retencao-cursos" />
+        <Pendente id="regiao-dados" />
+      </section>
+
       <section>
-        <h2>12. Como entrar em contato</h2>
+        <h2>13. Como entrar em contato</h2>
         <p>
           Caso você tenha dúvidas sobre esta Política de Privacidade, queira exercer seus direitos como titular de dados ou
           precise de informações sobre o tratamento de seus dados pessoais, entre em contato conosco:

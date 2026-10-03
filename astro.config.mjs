@@ -11,6 +11,9 @@ export default defineConfig({
   site,
   base,
   trailingSlash: 'always',
-  integrations: [sitemap()],
+  integrations: [
+    // páginas do módulo de cursos ficam fora do sitemap (e da navegação)
+    sitemap({ filter: (pagina) => !/\/(cursos|presenca|painel)\/$/.test(pagina) }),
+  ],
   build: { format: 'directory' },
 });

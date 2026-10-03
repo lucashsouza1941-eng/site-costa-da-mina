@@ -5,6 +5,7 @@ import Icone from './Icone.astro';
 import { rota } from '../lib/rota';
 import { linkWhatsApp, instituto } from '../data/instituto';
 import { projetos } from '../data/projetos';
+import { cursosConfigurado } from '../lib/config';
 
 const itens = [
   { rotulo: 'Sobre', href: rota('sobre/') },
@@ -34,6 +35,11 @@ const ativo = (href: string) => atual.startsWith(href);
             </li>
           ))
         }
+        {cursosConfigurado && (
+          <li data-link-cursos hidden>
+            <a href={rota('cursos/')} aria-current={ativo(rota('cursos/')) ? 'page' : undefined}>Cursos</a>
+          </li>
+        )}
       </ul>
       <a class="botao botao--roxo cabecalho__whats" href={linkWhatsApp()} rel="noopener">
         <Icone nome="whatsapp" /> WhatsApp
@@ -66,6 +72,11 @@ const ativo = (href: string) => atual.startsWith(href);
             </li>
           ))
         }
+        {cursosConfigurado && (
+          <li data-link-cursos hidden>
+            <a href={rota('cursos/')}>Cursos</a>
+          </li>
+        )}
       </ul>
       <p class="menu-celular__sub">Projetos</p>
       <ul class="menu-celular__projetos">
@@ -84,6 +95,10 @@ const ativo = (href: string) => atual.startsWith(href);
     </div>
   </div>
 </header>
+
+<script>
+  import '../scripts/link-cursos';
+</script>
 
 <style>
   .cabecalho {

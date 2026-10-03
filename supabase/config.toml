@@ -1,0 +1,9 @@
+# Configuração do Supabase CLI para este projeto (sem credenciais).
+# As chaves e segredos ficam no painel do Supabase, nunca no repositório.
+
+[functions.inscricao]
+# O site chama a função com a chave pública (anon/publishable).
+verify_jwt = false
+
+[functions.presenca]
+verify_jwt = false

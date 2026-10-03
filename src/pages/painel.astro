@@ -1,0 +1,110 @@
+---
+// Painel da equipe. Não tem link no site. A página em si é pública (é
+// um arquivo estático), mas não contém dados: tudo vem do Supabase depois
+// do login, e o banco só entrega o que a função da pessoa permite.
+import QRCode from 'qrcode';
+import Base from '../layouts/Base.astro';
+import Pendente from '../components/Pendente.astro';
+import { cursosConfigurado } from '../lib/config';
+import '../styles/formularios.css';
+import '../styles/painel.css';
+
+const enderecoPresenca = new URL(`${import.meta.env.BASE_URL.replace(/\/$/, '')}/presenca/`, Astro.site).toString();
+const qrSvg = await QRCode.toString(enderecoPresenca, { type: 'svg', margin: 2, errorCorrectionLevel: 'M', color: { dark: '#290b35', light: '#ffffff' } });
+---
+
+<Base titulo="Painel da equipe" descricao="Área restrita da equipe do Instituto Costa da Mina.">
+  <section class="painel envelope" data-painel data-configurado={cursosConfigurado ? 'sim' : 'nao'}>
+    <h1 class="painel__titulo" tabindex="-1">Painel da equipe</h1>
+
+    <div class="painel__aviso" data-aviso role="status" aria-live="polite"></div>
+    <Pendente id="contas-cursos" />
+
+    {
+      !cursosConfigurado && (
+        <div class="aviso">
+          <h2>Painel ainda não configurado</h2>
+          <p>Falta ligar o site ao Supabase. Veja o passo a passo em docs/CURSOS.md.</p>
+        </div>
+      )
+    }
+
+    <!-- login -->
+    <form class="form painel__login" data-login hidden novalidate>
+      <h2>Entrar</h2>
+      <div class="campo">
+        <label for="login-email">E-mail</label>
+        <input class="entrada" id="login-email" name="email" type="email" autocomplete="username" required />
+      </div>
+      <div class="campo">
+        <label for="login-senha">Senha</label>
+        <input class="entrada" id="login-senha" name="senha" type="password" autocomplete="current-password" required />
+      </div>
+      <p class="erro-campo" data-erro-login role="alert"></p>
+      <div class="grupo-botoes">
+        <button class="botao botao--roxo" type="submit">Entrar</button>
+        <button class="botao botao--contorno" type="button" data-esqueci>Esqueci a senha</button>
+      </div>
+    </form>
+
+    <!-- nova senha (link de recuperação) -->
+    <form class="form painel__login" data-nova-senha hidden novalidate>
+      <h2>Criar nova senha</h2>
+      <div class="campo">
+        <label for="nova-senha">Nova senha</label>
+        <input class="entrada" id="nova-senha" name="senha" type="password" autocomplete="new-password" minlength="10" required aria-describedby="dica-senha" />
+        <p class="dica" id="dica-senha">Use pelo menos 10 caracteres.</p>
+      </div>
+      <p class="erro-campo" data-erro-senha role="alert"></p>
+      <button class="botao botao--roxo" type="submit">Salvar senha</button>
+    </form>
+
+    <!-- área logada -->
+    <div class="painel__app" data-app hidden>
+      <div class="painel__topo">
+        <p><strong data-nome></strong> · <span data-funcao></span></p>
+        <button class="botao botao--contorno" type="button" data-sair>Sair</button>
+      </div>
+      <nav class="painel__abas" aria-label="Seções do painel">
+        <a href="#turmas" data-aba="turmas">Turmas</a>
+        <a href="#cursos" data-aba="cursos" data-gerir>Cursos</a>
+        <a href="#historico" data-aba="historico" data-gerir>Histórico</a>
+        <a href="#equipe" data-aba="equipe" data-admin>Equipe</a>
+        <a href="#qr" data-aba="qr">QR Code</a>
+      </nav>
+      <div class="painel__tela" data-tela></div>
+
+      <template data-qr>
+        <section class="qr">
+          <h2>QR Code da chamada</h2>
+          <p>
+            Este é o QR Code fixo das aulas. Ele só leva à página de presença: nada é registrado até a chamada estar aberta e a
+            participante se identificar. Pode imprimir e reutilizar.
+          </p>
+          <div class="qr__imagem" role="img" aria-label={`QR Code para ${enderecoPresenca}`} set:html={qrSvg} />
+          <p class="qr__endereco">{enderecoPresenca}</p>
+          <button class="botao botao--roxo" type="button" data-imprimir>Imprimir</button>
+        </section>
+      </template>
+    </div>
+
+    <dialog class="dialogo" data-dialogo aria-labelledby="dialogo-titulo">
+      <form method="dialog" class="form">
+        <h2 id="dialogo-titulo" data-dialogo-titulo></h2>
+        <div class="campo">
+          <label for="dialogo-campo" data-dialogo-rotulo></label>
+          <textarea class="entrada" id="dialogo-campo" maxlength="500" required></textarea>
+          <p class="erro-campo" data-dialogo-erro></p>
+        </div>
+        <div class="grupo-botoes">
+          <button class="botao botao--roxo" value="ok" data-dialogo-ok>Confirmar</button>
+          <button class="botao botao--contorno" value="cancelar" formnovalidate>Cancelar</button>
+        </div>
+      </form>
+    </dialog>
+  </section>
+</Base>
+
+<script>
+  import '../painel/app';
+</script>

@@ -1,0 +1,160 @@
+---
+// Página de inscrição. Não aparece na navegação: o link "Cursos" só é
+// exibido quando existe turma com inscrições abertas.
+import Base from '../layouts/Base.astro';
+import CabecaPagina from '../components/CabecaPagina.astro';
+import Icone from '../components/Icone.astro';
+import Pendente from '../components/Pendente.astro';
+import { cursosConfigurado, turnstileChave } from '../lib/config';
+import { instituto, linkWhatsApp } from '../data/instituto';
+import { rota } from '../lib/rota';
+import '../styles/formularios.css';
+---
+
+<Base titulo="Cursos de tranças" descricao="Inscrições nos cursos de tranças do Instituto Costa da Mina.">
+  <CabecaPagina sobrelinha="Cursos" titulo="Cursos de tranças">
+    <p>Inscrições gratuitas nas turmas do Instituto Costa da Mina.</p>
+  </CabecaPagina>
+
+  <section class="secao">
+    <div class="envelope cursos" data-cursos data-configurado={cursosConfigurado ? 'sim' : 'nao'} data-turnstile={turnstileChave}>
+      <Pendente id="contas-cursos" />
+      <Pendente id="menores-cursos" />
+      <div data-estado aria-live="polite">
+        {
+          cursosConfigurado ? (
+            <p class="carregando">Procurando turmas com inscrições abertas…</p>
+          ) : (
+            <div class="aviso">
+              <h2>Nenhuma inscrição aberta no momento</h2>
+              <p>
+                Acompanhe as novidades no Instagram{' '}
+                <a href={instituto.redes.instagram.url}>@{instituto.redes.instagram.usuario}</a>.
+              </p>
+            </div>
+          )
+        }
+      </div>
+
+      <div data-turmas hidden>
+        <h2 class="cursos__titulo">Turmas com inscrições abertas</h2>
+        <ul class="turmas" role="list" data-lista-turmas></ul>
+      </div>
+
+      <form class="form inscricao" data-form novalidate hidden aria-labelledby="titulo-form">
+        <h2 id="titulo-form" class="cursos__titulo" tabindex="-1">Faça sua inscrição</h2>
+        <p class="dica">Campos marcados com <span aria-hidden="true">*</span><span class="visualmente-oculto">asterisco</span> são obrigatórios.</p>
+
+        <div class="aviso aviso--erro" data-resumo-erros role="alert" tabindex="-1" hidden></div>
+
+        <fieldset class="grupo" data-campo="turma">
+          <legend>Turma <span aria-hidden="true">*</span></legend>
+          <div class="grupo" data-opcoes-turma></div>
+          <p class="erro-campo" id="erro-turma"></p>
+        </fieldset>
+
+        <div class="campo">
+          <label for="nome">Nome completo <span aria-hidden="true">*</span></label>
+          <input class="entrada" id="nome" name="nome" autocomplete="name" required maxlength="120" aria-describedby="erro-nome" />
+          <p class="erro-campo" id="erro-nome"></p>
+        </div>
+
+        <div class="campo">
+          <label for="nascimento">Data de nascimento <span aria-hidden="true">*</span></label>
+          <input class="entrada" id="nascimento" name="nascimento" type="date" autocomplete="bday" required min="1900-01-01" aria-describedby="erro-nascimento" />
+          <p class="erro-campo" id="erro-nascimento"></p>
+        </div>
+
+        <div class="campo">
+          <label for="whatsapp">WhatsApp com DDD <span aria-hidden="true">*</span></label>
+          <input class="entrada" id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel-national" required maxlength="20" placeholder="(11) 91234-5678" aria-describedby="dica-whatsapp erro-whatsapp" />
+          <p class="dica" id="dica-whatsapp">Usamos o WhatsApp para falar sobre a turma. Ele também serve para registrar presença nas aulas.</p>
+          <p class="erro-campo" id="erro-whatsapp"></p>
+        </div>
+
+        <div class="campo">
+          <label for="email">E-mail <span class="opcional">(opcional)</span></label>
+          <input class="entrada" id="email" name="email" type="email" autocomplete="email" maxlength="200" aria-describedby="erro-email" />
+          <p class="erro-campo" id="erro-email"></p>
+        </div>
+
+        <div class="campo">
+          <label for="bairro">Bairro <span aria-hidden="true">*</span></label>
+          <input class="entrada" id="bairro" name="bairro" autocomplete="address-level3" required maxlength="120" aria-describedby="erro-bairro" />
+          <p class="erro-campo" id="erro-bairro"></p>
+        </div>
+
+        <div class="campo">
+          <label for="disponibilidade">Disponibilidade de horário <span aria-hidden="true">*</span></label>
+          <textarea class="entrada" id="disponibilidade" name="disponibilidade" required maxlength="500" aria-describedby="dica-disponibilidade erro-disponibilidade"></textarea>
+          <p class="dica" id="dica-disponibilidade">Em quais dias e horários você consegue participar? Por exemplo: "domingos de manhã".</p>
+          <p class="erro-campo" id="erro-disponibilidade"></p>
+        </div>
+
+        <div class="aviso finalidade">
+          <h3>Para que usamos seus dados</h3>
+          <p>
+            Usamos estes dados somente para organizar a turma: confirmar sua vaga, avisar sobre as aulas pelo WhatsApp e
+            registrar a presença. Eles ficam guardados com acesso restrito à equipe do Instituto e não são publicados nem
+            vendidos. Você pode pedir a correção ou a exclusão a qualquer momento pelo e-mail
+            <a href={`mailto:${instituto.email}`}>{instituto.email}</a>.
+          </p>
+        </div>
+
+        <div class="campo">
+          <label class="opcao" for="consentimento">
+            <input type="checkbox" id="consentimento" name="consentimento" required aria-describedby="erro-consentimento" />
+            <span>
+              Li a <a href={rota('privacidade/')} target="_blank" rel="noopener">Política de Privacidade<span class="visualmente-oculto"> (abre em nova aba)</span></a> e autorizo o Instituto Costa da Mina a tratar meus dados para esta inscrição.
+              <span aria-hidden="true">*</span>
+            </span>
+          </label>
+          <p class="erro-campo" id="erro-consentimento"></p>
+        </div>
+
+        <div class="armadilha" aria-hidden="true">
+          <label for="site">Deixe este campo em branco</label>
+          <input id="site" name="site" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div data-captcha></div>
+
+        <div>
+          <button class="botao botao--roxo" type="submit" data-enviar>Enviar inscrição <Icone nome="seta" /></button>
+        </div>
+      </form>
+
+      <div class="confirmacao" data-confirmacao hidden tabindex="-1"></div>
+
+      <p class="ajuda">
+        Precisa de ajuda? <a href={linkWhatsApp('Olá! Preciso de ajuda com a inscrição no curso de tranças.')}>Fale com a equipe pelo WhatsApp</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+{turnstileChave && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>}
+
+<script>
+  import '../scripts/inscricao';
+</script>
+
+<style>
+  .cursos {
+    display: grid;
+    gap: 2.5rem;
+    max-width: 44rem;
+  }
+  .cursos > * {
+    min-width: 0;
+  }
+  .cursos__titulo {
+    font-size: var(--t-3);
+  }
+  .ajuda {
+    color: var(--tinta-suave);
+  }
+  .finalidade h3 {
+    font-size: var(--t-1);
+  }
+</style>
