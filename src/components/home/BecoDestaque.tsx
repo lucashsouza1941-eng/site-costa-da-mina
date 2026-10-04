@@ -38,7 +38,7 @@ export function BecoDestaque() {
             <h2 id="titulo-beco" className="mt-1.5 text-[clamp(1.9rem,1.2rem+1.5vw,2.45rem)] leading-tight text-white">
               Beco da Mina
             </h2>
-            <p className="mt-1 font-heading text-[clamp(1.2rem,0.9rem+0.7vw,1.5rem)] leading-snug font-medium text-white/95">
+            <p className="mt-1 font-heading text-[clamp(1.2rem,0.9rem+0.7vw,1.5rem)] leading-snug font-semibold text-white/95">
               Arte, ancestralidade
               <br />e pertencimento.
             </p>

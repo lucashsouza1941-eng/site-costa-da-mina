@@ -3,7 +3,7 @@
 import type { Metadata } from 'next';
 import { urlAbsoluta } from './site';
 
-export function metadados({ titulo, descricao, caminho, imagem }: { titulo: string; descricao: string; caminho: string; imagem?: string }): Metadata {
+export function metadados({ titulo, descricao, caminho }: { titulo: string; descricao: string; caminho: string }): Metadata {
   return {
     title: titulo,
     description: descricao,
@@ -14,7 +14,9 @@ export function metadados({ titulo, descricao, caminho, imagem }: { titulo: stri
       url: urlAbsoluta(caminho),
       type: 'website',
       locale: 'pt_BR',
-      ...(imagem ? { images: [{ url: urlAbsoluta(imagem) }] } : {}),
+      // imagem de compartilhamento do site (JPEG: WhatsApp e Facebook não
+      // exibem WebP com confiabilidade)
+      images: [{ url: urlAbsoluta('/opengraph-image.jpg'), width: 1200, height: 630, alt: 'Instituto Costa da Mina' }],
     },
   };
 }

@@ -25,7 +25,7 @@ export const generateStaticParams = () => listarProjetos().map((p) => ({ slug: p
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const p = buscarProjeto((await params).slug);
   if (!p) return {};
-  return metadados({ titulo: p.nome, descricao: `${p.chamada} ${p.resumoCard}`, caminho: `/projetos/${p.slug}/`, imagem: p.capa?.src });
+  return metadados({ titulo: p.nome, descricao: `${p.chamada} ${p.resumoCard}`, caminho: `/projetos/${p.slug}/` });
 }
 
 const pendenciasDoProjeto: Record<SlugProjeto, IdPendencia[]> = {
@@ -52,7 +52,7 @@ export default async function PaginaProjeto({ params }: Params) {
         trilha={[{ rotulo: 'Projetos', href: '/projetos/' }, { rotulo: projeto.nome }]}
         imagem={projeto.capa}
       >
-        <p className="font-heading text-[1.2rem] font-medium">{projeto.chamada}</p>
+        <p className="font-heading text-[1.2rem] font-semibold">{projeto.chamada}</p>
       </CabecaPagina>
 
       <section className="section-y-sm" aria-labelledby="titulo-sobre-projeto">

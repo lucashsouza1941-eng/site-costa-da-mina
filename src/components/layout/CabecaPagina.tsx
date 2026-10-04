@@ -6,6 +6,7 @@ import type { ReactNode } from 'react';
 import type { Imagem } from '@/content/tipos';
 import { Rotulo } from '@/components/ui/Rotulo';
 import { BordaOndulada, Pincelada } from '@/components/ui/Ornamentos';
+import { jsonLd, trilhaDeNavegacao } from '@/lib/dados-estruturados';
 
 type Props = {
   rotulo: string;
@@ -18,6 +19,15 @@ type Props = {
 export function CabecaPagina({ rotulo, titulo, children, trilha = [], imagem }: Props) {
   return (
     <section className="relative isolate overflow-hidden bg-primary-deep text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(
+          trilhaDeNavegacao([
+            { nome: 'Início', caminho: '/' },
+            ...trilha.map((t) => ({ nome: t.rotulo, caminho: t.href })),
+          ]),
+        )}
+      />
       <div className="absolute inset-0 -z-20 bg-[linear-gradient(100deg,var(--color-primary-deep)_20%,var(--color-primary-dark)_100%)]" />
       {imagem && (
         <div className="relative h-56 sm:h-72 lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:h-auto lg:w-[46%]">

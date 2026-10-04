@@ -8,6 +8,7 @@ import { buscarNoticia, listarNoticias } from '@/lib/conteudo';
 import { dataCompleta } from '@/lib/datas';
 import { metadados } from '@/lib/seo';
 import { indexavel, urlAbsoluta } from '@/lib/site';
+import { jsonLd } from '@/lib/dados-estruturados';
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   // página técnica "em-breve": nunca indexada; segue a regra do site para links
   if (!n) return { title: 'Notícias em breve', robots: { index: false, follow: indexavel } };
   return {
-    ...metadados({ titulo: n.titulo, descricao: n.resumo, caminho: `/noticias/${n.slug}/`, imagem: n.imagem?.src }),
+    ...metadados({ titulo: n.titulo, descricao: n.resumo, caminho: `/noticias/${n.slug}/` }),
     openGraph: { type: 'article', title: n.titulo, description: n.resumo, publishedTime: n.data, url: urlAbsoluta(`/noticias/${n.slug}/`) },
   };
 }
@@ -64,7 +65,7 @@ export default async function PaginaNoticia({ params }: Params) {
 
   return (
     <main id="conteudo">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dadosEstruturados) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(dadosEstruturados)} />
       <CabecaPagina
         rotulo={NOMES_CATEGORIA_NOTICIA[noticia.categoria]}
         titulo={noticia.titulo}

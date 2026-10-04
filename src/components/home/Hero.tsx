@@ -19,7 +19,8 @@ export function Hero() {
   return (
     <section aria-labelledby="hero-titulo" className="relative isolate overflow-hidden bg-primary-deep text-white">
       {/* fundo: ilustração institucional Brasil–África, escurecida */}
-      <Image src={fundo.src} alt="" fill sizes="100vw" loading="eager" className="-z-20 object-cover opacity-35 mix-blend-luminosity" />
+      {/* só no desktop: no celular o fundo é o degradê (a ilustração virava o LCP e pesava a primeira dobra) */}
+      <Image src={fundo.src} alt="" fill sizes="(min-width: 1024px) 100vw, 1px" className="-z-20 hidden object-cover opacity-35 mix-blend-luminosity lg:block" />
       <div className="absolute inset-0 -z-20 bg-[linear-gradient(100deg,var(--color-primary-deep)_10%,rgb(46_17_60/0.88)_45%,rgb(46_17_60/0.55)_100%)]" />
 
       {/* foto: topo no celular, metade direita no desktop */}

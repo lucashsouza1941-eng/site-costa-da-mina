@@ -8,6 +8,7 @@ Novo site oficial do Instituto Costa da Mina (Cidade Ademar, Zona Sul de São Pa
 - **Conteúdo de referência do site anterior:** [docs/INVENTARIO.md](docs/INVENTARIO.md)
 - **O que falta confirmar:** [docs/PENDENCIAS.md](docs/PENDENCIAS.md)
 - **Imagens (acervo oficial, origem de cada arquivo, o que falta):** [docs/IMAGENS.md](docs/IMAGENS.md)
+- **SEO, performance e acessibilidade (medições):** [docs/QUALIDADE.md](docs/QUALIDADE.md)
 - **Módulo de cursos (inscrições e chamada):** [docs/CURSOS.md](docs/CURSOS.md)
 
 ## Como rodar
