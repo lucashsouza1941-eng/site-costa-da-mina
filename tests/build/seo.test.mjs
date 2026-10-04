@@ -26,7 +26,8 @@ for (const { nome, html } of publicas) {
     assert.match(html, /<meta property="og:image" content="https:\/\/[^"]+opengraph-image\.jpg"/, 'og:image em JPEG');
     assert.match(html, /<meta property="og:title" content="[^"]+"/);
     assert.match(html, /<meta name="twitter:card" content="summary_large_image"/);
-    assert.match(html, /<link rel="icon" href="[^"]*favicon\.ico/);
+    // com basePath o Next não declara o favicon.ico (só na raiz); o icon.png vale nos dois casos
+    assert.match(html, /<link rel="icon" href="[^"]*(favicon\.ico|icon\.png)/, 'ícone');
     assert.match(html, /<link rel="manifest"/);
   });
 

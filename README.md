@@ -29,7 +29,19 @@ Abre em http://localhost:3000, com a vitrine do design system em `/design-system
 npm run verificar
 ```
 
-Roda checagem de tipos, testes, build estático em `out/` e verificação do site gerado.
+Roda checagem de tipos, testes de banco/regras/conteúdo, build estático em `out/`, verificação do HTML gerado e os testes no navegador (`npm run e2e`). Os testes de navegador usam o Chrome ou o Edge já instalado (ou `CHROME_PATH`).
+
+```bash
+npm run e2e:cursos
+```
+
+Testa o módulo de cursos de ponta a ponta (inscrição, lista de espera, presença, painel) contra um Supabase falso local, com o SQL real da migração. No fim, refaz o build normal.
+
+```bash
+npm start
+```
+
+Serve o `out/` com gzip em http://localhost:4322 (ou `PORTA`), como o GitHub Pages.
 
 ```bash
 npm run pendencias
@@ -58,9 +70,10 @@ src/
   content/          dados tipados: instituto, home, projetos, coleções, pendências
   lib/conteudo.ts   única porta de leitura do conteúdo (pronta para CMS ou /admin)
   lib/imagens/      loader de imagens para a exportação estática
-  modulos/cursos/   código do módulo de inscrições e chamada (a migrar na Fase 6)
+  modulos/cursos/   módulo de inscrições e chamada (scripts montados pelo AtivarModulo)
 supabase/           banco, regras, RLS e Edge Functions do módulo de cursos
-tests/              banco (PGlite), regras, conteúdo; tests/build verifica o out/
+tests/              banco (PGlite), regras, conteúdo; tests/build verifica o out/;
+                    tests/e2e e tests/e2e-cursos rodam no navegador
 ```
 
 - **Exportação estática** (`output: 'export'`) para o GitHub Pages. As imagens otimizadas (AVIF/WebP) são geradas no build, porque o Pages não roda o otimizador do Next.
@@ -71,7 +84,7 @@ tests/              banco (PGlite), regras, conteúdo; tests/build verifica o ou
 
 ## Publicação
 
-O workflow [.github/workflows/publicar.yml](.github/workflows/publicar.yml) roda tipos, testes, build e verificação, e publica `out/` no GitHub Pages a cada push na `main`. Enquanto o endereço for temporário, todas as páginas levam `noindex` e o `robots.txt` bloqueia buscadores.
+O workflow [.github/workflows/publicar.yml](.github/workflows/publicar.yml) roda tipos, testes, o fluxo de cursos no navegador, build, verificação do HTML e testes no navegador com o caminho base do Pages, e só então publica `out/` no GitHub Pages a cada push na `main`. Enquanto o endereço for temporário, todas as páginas levam `noindex` e o `robots.txt` bloqueia buscadores.
 
 ### Ligar o domínio oficial (só depois da aprovação final)
 

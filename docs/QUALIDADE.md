@@ -44,6 +44,13 @@ CLS (estabilidade do layout) 0 a 0,04 e TBT (bloqueio) até 110 ms em todas.
 - **`manifest.webmanifest`, `favicon.ico`, ícone do app e da Apple:** gerados a partir do selo oficial (`scripts/gerar-icones.mjs`).
 - **Caminho base:** funciona com `/site-costa-da-mina`, sem duplicar o caminho (há teste).
 
-## Testes automáticos relacionados
+## Testes automáticos
 
-`tests/build/seo.test.mjs` confere metadados, JSON-LD, sitemap, ícones e prefetch. `tests/build/paginas.test.mjs` confere links internos, um h1 por página e o módulo oculto.
+| Comando | O que cobre |
+| --- | --- |
+| `npm test` | Banco com RLS em PGlite (SQL real da migração), regras das Edge Functions, conteúdo e acervo de imagens (65 testes). |
+| `node --test tests/build/*.test.mjs` | HTML gerado: estrutura da home, um h1 por página, links internos, imagens existentes, metadados, JSON-LD, sitemap, ícones, prefetch e `noindex` (108 testes). Também roda com `BASE_PATH=/site-costa-da-mina`. |
+| `npm run e2e` | Navegador real: todas as páginas sem erro de console, 404 ou imagem quebrada; nenhuma rolagem lateral em 5 larguras; axe-core em 1280 e 375 px; teclado (pular conteúdo, menu, busca, galeria); navegação interna; módulo oculto; página 404 (10 testes). |
+| `npm run e2e:cursos` | Módulo de cursos contra o Supabase falso: link no cabeçalho com turma aberta, inscrição, erros de preenchimento, duplicidade, lista de espera, presença e painel (9 testes). |
+
+`npm run verificar` encadeia tipos, `npm test`, build, testes do HTML e `npm run e2e`. O workflow de publicação roda todos, inclusive com o caminho base do GitHub Pages, antes de publicar.

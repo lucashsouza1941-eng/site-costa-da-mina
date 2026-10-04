@@ -17,7 +17,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  testes:
+    name: Tipos, testes e fluxo de cursos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Tipos
+        run: npm run typecheck
+      - name: Banco, regras, conteúdo e acervo
+        run: npm test
+      - name: Módulo de cursos no navegador (Supabase falso)
+        run: npm run e2e:cursos
+
   build:
+    name: Build e testes do site gerado
+    needs: testes
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,8 +47,6 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
       - run: npm ci
-      - name: Tipos e testes
-        run: npm run typecheck && npm test
       - name: Build (exportação estática)
         run: npm run build
         env:
@@ -42,6 +59,12 @@ jobs:
           NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
       - name: Verificar o site gerado
         run: node --test tests/build/*.test.mjs
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+      - name: Navegador (páginas, teclado, acessibilidade, larguras)
+        run: npm run e2e
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

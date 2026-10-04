@@ -10,13 +10,15 @@
     "prebuild": "node scripts/imagens/variantes.mjs",
     "build": "next build",
     "postbuild": "node scripts/corrigir-prefetch.mjs",
-    "start": "npx serve out",
+    "start": "node scripts/servir.mjs",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
-    "verificar": "npm run typecheck && npm test && npm run build && node --test tests/build/*.test.mjs",
+    "verificar": "npm run typecheck && npm test && npm run build && node --test tests/build/*.test.mjs && npm run e2e",
     "pendencias": "node scripts/pendencias.mjs",
     "imagens:baixar": "node scripts/imagens/baixar.mjs",
-    "imagens:variantes": "node scripts/imagens/variantes.mjs"
+    "imagens:variantes": "node scripts/imagens/variantes.mjs",
+    "e2e": "node --test --test-concurrency=1 tests/e2e/*.test.mjs",
+    "e2e:cursos": "node scripts/e2e-cursos.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",
@@ -35,6 +37,8 @@
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "axe-core": "^4.13.0",
+    "puppeteer-core": "^25.12.0",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
