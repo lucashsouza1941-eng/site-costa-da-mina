@@ -74,9 +74,9 @@ export const projetos: Projeto[] = [
       { rotulo: 'Para quem', valor: 'Pessoas da comunidade com entrevistas de emprego, eventos e outros momentos importantes' },
       { rotulo: 'Quem conduz', valor: 'Trancista com mais de 30 anos de experiência' },
     ],
-    capa: imagem('tranca-amiga-cartaz'),
+    capa: { ...imagem('tranca-amiga-banner'), foco: '50% 50%' },
     marca: imagem('tranca-amiga-marca'),
-    fotos: [imagem('tranca-amiga-banner')],
+    fotos: [imagem('tranca-amiga-cartaz')],
   },
   {
     slug: 'sarau-trancado',

@@ -28,6 +28,8 @@ export const instituto = {
   },
 
   cnpj: '62.212.632/0001-76',
+  /** A chave PIX só é exibida depois que o Instituto confirmar (pendência pix-validacao). */
+  pixValidado: false,
 
   redes: {
     instagram: { usuario: 'instituto.costadamina', url: 'https://www.instagram.com/instituto.costadamina/' },

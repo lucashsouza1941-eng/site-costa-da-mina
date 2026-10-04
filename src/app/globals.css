@@ -37,8 +37,9 @@
   /* medido na referência: ~54px a 1440px, entrelinha 1.07 */
   --text-hero: clamp(2.35rem, 1.1rem + 2.6vw, 3.6rem);
   --text-hero--line-height: 1.07;
-  --text-section: clamp(1.6rem, 1.2rem + 1.5vw, 2.25rem);
-  --text-section--line-height: 1.12;
+  /* medido na referência: ~28px a 1440px */
+  --text-section: clamp(1.45rem, 0.9rem + 0.9vw, 1.75rem);
+  --text-section--line-height: 1.15;
 
   /* --- raios e sombras --- */
   --radius-card: 0.5rem;

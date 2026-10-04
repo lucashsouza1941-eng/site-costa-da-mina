@@ -4,6 +4,8 @@ import './globals.css';
 import { classesDasFontes } from '@/lib/fontes';
 import { indexavel, urlDoSite, basePath } from '@/lib/site';
 import { instituto } from '@/content/instituto';
+import { Cabecalho } from '@/components/layout/Cabecalho';
+import { Rodape } from '@/components/layout/Rodape';
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${urlDoSite}${basePath}/`),
@@ -36,7 +38,9 @@ export default function LayoutRaiz({ children }: { children: ReactNode }) {
         >
           Pular para o conteúdo
         </a>
+        <Cabecalho />
         {children}
+        <Rodape />
       </body>
     </html>
   );
