@@ -1,9 +1,12 @@
 # Publica o site no GitHub Pages (endereço temporário) a cada push na main.
+# Em pull requests para a main, roda os mesmos testes e o build, sem publicar.
 # O domínio institutocostadamina.com.br só será conectado após a aprovação final.
 name: Publicar
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
@@ -13,7 +16,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  # cada PR tem a sua fila; a publicação (push na main) tem outra
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.number) || 'pages' }}
   cancel-in-progress: true
 
 jobs:
@@ -65,11 +69,13 @@ jobs:
         run: npm run e2e
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
-      - uses: actions/upload-pages-artifact@v3
+      - if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: out
 
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:
