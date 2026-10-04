@@ -17,11 +17,11 @@ export function Apoie() {
     <section id="apoie" aria-labelledby="titulo-apoie" className="relative isolate overflow-hidden bg-primary-dark text-white">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(60rem_20rem_at_30%_50%,rgb(95_38_125/0.55),transparent_70%)]" />
       {/* foto de mãos trançando, sangrando à esquerda */}
-      <div className="absolute inset-y-0 left-0 -z-10 hidden w-[16%] lg:block">
+      <div className="absolute inset-y-0 left-0 -z-10 hidden w-[15%] lg:block">
         <Image src={foto.src} alt="" fill sizes="16vw" className="object-cover [mask-image:linear-gradient(to_right,black_45%,transparent)]" />
       </div>
 
-      <div className="grid items-center gap-8 px-[var(--gutter)] py-10 lg:grid-cols-[minmax(0,1fr)_minmax(17rem,22rem)_auto] lg:gap-8 lg:py-8 lg:pr-[max(var(--gutter),calc((100vw-var(--container-site))/2-3rem))] lg:pl-[16vw]">
+      <div className="grid items-center gap-8 px-[var(--gutter)] py-10 md:grid-cols-2 lg:pl-[17vw] xl:grid-cols-[minmax(0,1fr)_minmax(17rem,22rem)_auto] xl:gap-8 xl:py-8 xl:pr-[max(var(--gutter),calc((100vw-var(--container-site))/2-3rem))] xl:pl-[16vw]">
         <div>
           <Rotulo tom="amarelo">Apoie o Instituto</Rotulo>
           <h2 id="titulo-apoie" className="mt-1.5 font-display text-[clamp(1.6rem,1rem+1.4vw,2.05rem)] leading-[1.05] font-extrabold">
@@ -66,7 +66,7 @@ export function Apoie() {
           <Pendente id="pix-validacao" />
         </div>
 
-        <div className="relative flex items-center gap-5 pt-6 lg:pt-8">
+        <div className="relative flex items-center gap-5 pt-6 md:col-span-2 xl:col-span-1 xl:pt-8">
           <Botao href="/apoie/" seta>
             Quero apoiar
           </Botao>

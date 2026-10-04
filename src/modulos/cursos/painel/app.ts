@@ -8,8 +8,13 @@ import { telaCursos } from './cursos';
 import { telaEquipe } from './equipe';
 import { telaHistorico } from './historico';
 
-const raiz = document.querySelector<HTMLElement>('[data-painel]');
-if (raiz && cursosConfigurado) iniciar(raiz);
+/** Liga o painel (chamado a cada montagem da página). */
+export function montar() {
+  const raiz = document.querySelector<HTMLElement>('[data-painel]');
+  if (!raiz || !cursosConfigurado || raiz.dataset.montado) return;
+  raiz.dataset.montado = 'sim';
+  iniciar(raiz);
+}
 
 function iniciar(raiz: HTMLElement) {
   const formLogin = raiz.querySelector<HTMLFormElement>('[data-login]')!;
@@ -133,8 +138,9 @@ function iniciar(raiz: HTMLElement) {
           await telaHistorico(tela);
           break;
         case 'qr': {
-          const modelo = raiz!.querySelector<HTMLTemplateElement>('[data-qr]')!;
-          tela.replaceChildren(modelo.content.cloneNode(true));
+          const modelo = raiz!.querySelector<HTMLElement>('[data-qr]')!;
+          const conteudo = modelo instanceof HTMLTemplateElement ? modelo.content.cloneNode(true) : modelo.firstElementChild!.cloneNode(true);
+          tela.replaceChildren(conteudo);
           tela.querySelector('[data-imprimir]')?.addEventListener('click', () => print());
           break;
         }

@@ -2,6 +2,13 @@
 
 Módulo para inscrições nos cursos de tranças e controle de presença. O código está pronto e testado, mas **só funciona depois de criar e configurar as contas descritas abaixo**. Sem essa configuração, o site continua como está: as páginas do módulo mostram "nenhuma inscrição aberta" e o link "Cursos" não aparece.
 
+## Onde fica no código
+
+- Páginas: `src/app/cursos/`, `src/app/presenca/`, `src/app/painel/` (Next.js, sem link no site, `noindex`, fora do sitemap).
+- Scripts do formulário, da presença e do painel: `src/modulos/cursos/` (ligados por `AtivarModulo`, a cada montagem da página).
+- Link "Cursos" no cabeçalho: só existe no HTML quando o Supabase está configurado e começa oculto; aparece quando há turma aberta.
+- Banco, regras e Edge Functions: `supabase/`.
+
 ## Arquitetura
 
 ```
@@ -150,7 +157,7 @@ Em **Settings → Secrets and variables → Actions → Variables** do repositó
 | `PUBLIC_SUPABASE_ANON_KEY` | Chave **pública** (anon ou publishable) |
 | `PUBLIC_TURNSTILE_SITE_KEY` | Site Key do Turnstile |
 
-São valores públicos por natureza; por isso ficam em *Variables*, não em *Secrets*. Depois, rode o workflow **Publicar** (ou faça um push). Os testes do build falham se aparecer uma chave de serviço no site.
+São valores públicos por natureza; por isso ficam em *Variables*, não em *Secrets*. O workflow os repassa ao build do Next.js como `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` e `NEXT_PUBLIC_TURNSTILE_SITE_KEY`. Depois, rode o workflow **Publicar** (ou faça um push). Os testes do build falham se aparecer uma chave de serviço no site.
 
 ### 4. Primeiro administrador
 
@@ -184,10 +191,10 @@ Para ver `/cursos/` e `/presenca/` funcionando sem conta no Supabase, há um Sup
 node tests/apoio/supabase-falso.mjs
 ```
 
-Em outro terminal (o `--force` substitui um servidor de desenvolvimento já aberto):
+Em outro terminal (feche antes outro `npm run dev` deste projeto):
 
 ```bash
-PUBLIC_SUPABASE_URL=http://localhost:54321 PUBLIC_SUPABASE_ANON_KEY=dev npx astro dev --force
+NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321 NEXT_PUBLIC_SUPABASE_ANON_KEY=dev npm run dev
 ```
 
 Atalhos do Supabase falso: `http://localhost:54321/dev/abrir-chamada`, `/dev/fechar-chamada` e `/dev/lotar` (deixa 1 vaga, para testar a lista de espera).

@@ -14,10 +14,11 @@ type Props = {
   logo: ReactNode;
   redes: { rotulo: string; href: string; icone: 'instagram' | 'whatsapp' | 'email' }[];
   busca: ReactNode;
+  linkCursos?: boolean;
 };
 
 /** Menu do celular e tablet: <dialog> nativo (fecha com Esc e prende o foco). */
-export function MenuCelular({ itens, logo, redes, busca }: Props) {
+export function MenuCelular({ itens, logo, redes, busca, linkCursos = false }: Props) {
   const dialogo = useRef<HTMLDialogElement>(null);
   const fechar = useRef<HTMLButtonElement>(null);
   const caminho = usePathname() ?? '/';
@@ -86,6 +87,13 @@ export function MenuCelular({ itens, logo, redes, busca }: Props) {
                   </li>
                 );
               })}
+              {linkCursos && (
+                <li data-link-cursos hidden>
+                  <Link href="/cursos/" onClick={() => dialogo.current?.close()} className="block py-1.5 font-display text-[2.1rem] leading-tight font-extrabold text-white uppercase hover:text-accent">
+                    Cursos
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
 

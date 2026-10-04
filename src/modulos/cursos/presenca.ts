@@ -4,8 +4,13 @@ import { chamadaDisponivel, chamarFuncao } from './lib/api-publica';
 import { mensagemDe, normalizarCodigo, normalizarWhatsapp } from '../../../supabase/functions/_compartilhado/regras';
 import { el, formatarHora } from './lib/dom';
 
-const raiz = document.querySelector<HTMLElement>('[data-presenca]');
-if (raiz && cursosConfigurado) iniciar(raiz);
+/** Liga a página de presença (chamado a cada montagem da página). */
+export function montar() {
+  const raiz = document.querySelector<HTMLElement>('[data-presenca]');
+  if (!raiz || !cursosConfigurado || raiz.dataset.montado) return;
+  raiz.dataset.montado = 'sim';
+  iniciar(raiz);
+}
 
 function iniciar(raiz: HTMLElement) {
   const estado = raiz.querySelector<HTMLElement>('[data-estado]')!;

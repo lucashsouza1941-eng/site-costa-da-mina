@@ -20,21 +20,24 @@ function mostrar(abertos: boolean) {
   document.querySelectorAll<HTMLElement>('[data-link-cursos]').forEach((el) => (el.hidden = !abertos));
 }
 
-const cache = cursosConfigurado ? lerCache() : false;
-if (!cursosConfigurado) {
-  mostrar(false);
-} else if (cache !== null) {
-  mostrar(cache);
-} else {
-  turmasAbertas()
-    .then((turmas) => {
-      const abertos = turmas.length > 0;
-      try {
-        sessionStorage.setItem(CHAVE, JSON.stringify({ abertos, em: Date.now() }));
-      } catch {
-        /* ignora */
-      }
-      mostrar(abertos);
-    })
-    .catch(() => mostrar(false));
+/** Mostra ou esconde o link "Cursos" (chamado a cada montagem do cabeçalho). */
+export function montar() {
+  const cache = cursosConfigurado ? lerCache() : false;
+  if (!cursosConfigurado) {
+    mostrar(false);
+  } else if (cache !== null) {
+    mostrar(cache);
+  } else {
+    turmasAbertas()
+      .then((turmas) => {
+        const abertos = turmas.length > 0;
+        try {
+          sessionStorage.setItem(CHAVE, JSON.stringify({ abertos, em: Date.now() }));
+        } catch {
+          /* ignora */
+        }
+        mostrar(abertos);
+      })
+      .catch(() => mostrar(false));
+  }
 }

@@ -14,9 +14,13 @@ declare global {
   }
 }
 
-const raiz = document.querySelector<HTMLElement>('[data-cursos]');
-
-if (raiz && cursosConfigurado) iniciar(raiz);
+/** Liga o formulário (chamado a cada montagem da página). */
+export function montar() {
+  const raiz = document.querySelector<HTMLElement>('[data-cursos]');
+  if (!raiz || !cursosConfigurado || raiz.dataset.montado) return;
+  raiz.dataset.montado = 'sim';
+  iniciar(raiz);
+}
 
 async function iniciar(raiz: HTMLElement) {
   const estado = raiz.querySelector<HTMLElement>('[data-estado]')!;

@@ -174,6 +174,27 @@ export const pendencias = [
     onde: 'Formulário de inscrição',
   },
   {
+    id: 'visao-valores-equipe',
+    assunto: 'Visão, valores e equipe',
+    situacao:
+      'A página /instituto/ está pronta para mostrar visão, valores e equipe, mas o site anterior não traz esses textos. Nada é exibido até o Instituto enviar (nomes e funções da equipe precisam de autorização).',
+    onde: '/instituto/',
+  },
+  {
+    id: 'transparencia-documentos',
+    assunto: 'Documentos de transparência',
+    situacao:
+      'A seção Transparência mostra só dados públicos (nome, CNPJ, endereço, contato). Estatuto, atas, relatórios de atividades e prestação de contas podem ser publicados quando o Instituto enviar.',
+    onde: '/instituto/#transparencia',
+  },
+  {
+    id: 'termos-revisao',
+    assunto: 'Termos de Uso',
+    situacao:
+      'Não existe texto oficial de Termos de Uso no site anterior. A página /termos/ traz regras básicas de uso de um site informativo, escritas para o novo site; precisam de revisão e aprovação do Instituto (idealmente com apoio jurídico).',
+    onde: '/termos/',
+  },
+  {
     id: 'outras-redes',
     assunto: 'Outras redes sociais',
     situacao: 'Só o Instagram (@instituto.costadamina e @sarau.trancado) aparece no site anterior. Confirmar se há Facebook, YouTube ou TikTok oficiais.',

@@ -4,7 +4,7 @@ Gerado por `npm run pendencias` a partir de `src/content/pendencias.ts`. Não ed
 
 Nada desta lista aparece no site publicado. Em `npm run dev`, cada item aparece como um aviso tracejado em vermelho (componente `<Pendente>`) no ponto da página onde a informação entraria.
 
-Total: **24**
+Total: **27**
 
 ## Nome jurídico da organização
 
@@ -143,6 +143,24 @@ Total: **24**
 - **id:** `menores-cursos`
 - **Onde:** Formulário de inscrição
 - **Situação:** Um cartaz antigo cita "+14 anos". O sistema permite definir idade mínima por turma, mas o Instituto precisa decidir a idade e, para menores de 18, se exigirá autorização de responsável (a LGPD pede consentimento de responsável para crianças de até 12 anos).
+
+## Visão, valores e equipe
+
+- **id:** `visao-valores-equipe`
+- **Onde:** /instituto/
+- **Situação:** A página /instituto/ está pronta para mostrar visão, valores e equipe, mas o site anterior não traz esses textos. Nada é exibido até o Instituto enviar (nomes e funções da equipe precisam de autorização).
+
+## Documentos de transparência
+
+- **id:** `transparencia-documentos`
+- **Onde:** /instituto/#transparencia
+- **Situação:** A seção Transparência mostra só dados públicos (nome, CNPJ, endereço, contato). Estatuto, atas, relatórios de atividades e prestação de contas podem ser publicados quando o Instituto enviar.
+
+## Termos de Uso
+
+- **id:** `termos-revisao`
+- **Onde:** /termos/
+- **Situação:** Não existe texto oficial de Termos de Uso no site anterior. A página /termos/ traz regras básicas de uso de um site informativo, escritas para o novo site; precisam de revisão e aprovação do Instituto (idealmente com apoio jurídico).
 
 ## Outras redes sociais
 

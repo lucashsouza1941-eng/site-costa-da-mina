@@ -12,7 +12,7 @@ export function estaAtivo(href: string, caminho: string) {
   return caminho.startsWith(href);
 }
 
-export function NavPrincipal({ itens, className }: { itens: ItemMenu[]; className?: string }) {
+export function NavPrincipal({ itens, className, linkCursos = false }: { itens: ItemMenu[]; className?: string; linkCursos?: boolean }) {
   const caminho = usePathname() ?? '/';
   return (
     <ul className={cx('flex items-center', className)}>
@@ -34,6 +34,14 @@ export function NavPrincipal({ itens, className }: { itens: ItemMenu[]; classNam
           </li>
         );
       })}
+      {/* aparece só quando há turma com inscrições abertas (módulo de cursos) */}
+      {linkCursos && (
+        <li data-link-cursos hidden>
+          <Link href="/cursos/" className="relative block py-2 font-heading font-semibold text-text hover:text-primary">
+            Cursos
+          </Link>
+        </li>
+      )}
     </ul>
   );
 }
