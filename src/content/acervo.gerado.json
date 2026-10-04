@@ -1,0 +1,366 @@
+{
+  "aviso": "Gerado por scripts/imagens/baixar.mjs. Não edite à mão.",
+  "imagens": {
+    "logo-horizontal": {
+      "src": "/images/instituto/marca/logo-horizontal.webp",
+      "largura": 835,
+      "altura": 306,
+      "alt": "Instituto Costa da Mina",
+      "categoria": "marca",
+      "tipo": "marca",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/Ativo-6-8.png"
+    },
+    "logo-horizontal-branco": {
+      "src": "/images/instituto/marca/logo-horizontal-branco.webp",
+      "largura": 835,
+      "altura": 306,
+      "alt": "Instituto Costa da Mina",
+      "categoria": "marca",
+      "tipo": "marca",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/Ativo-6-8.png",
+      "nota": "Derivada do logotipo oficial: o roxo vira branco, o amarelo é mantido (para fundos escuros)."
+    },
+    "simbolo": {
+      "src": "/images/instituto/marca/simbolo.webp",
+      "largura": 445,
+      "altura": 502,
+      "alt": "Símbolo do Instituto: cadeira de salão com raízes",
+      "categoria": "marca",
+      "tipo": "marca",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/Ativo-1-8.png"
+    },
+    "simbolo-branco": {
+      "src": "/images/instituto/marca/simbolo-branco.webp",
+      "largura": 445,
+      "altura": 502,
+      "alt": "Símbolo do Instituto: cadeira de salão com raízes",
+      "categoria": "marca",
+      "tipo": "marca",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/Ativo-1-8.png",
+      "nota": "Derivada do símbolo oficial para fundos escuros."
+    },
+    "selo-amarelo": {
+      "src": "/images/instituto/marca/selo-amarelo.webp",
+      "largura": 1081,
+      "altura": 1081,
+      "alt": "Selo do Instituto: cadeira com raízes em círculo amarelo",
+      "categoria": "marca",
+      "tipo": "marca",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/LOGOTIPO-COSTA-DA-MINA-06.png"
+    },
+    "selo-roxo": {
+      "src": "/images/instituto/marca/selo-roxo.webp",
+      "largura": 1081,
+      "altura": 1081,
+      "alt": "Selo do Instituto: cadeira com raízes em círculo roxo",
+      "categoria": "marca",
+      "tipo": "marca",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/LOGOTIPO-COSTA-DA-MINA-07.png"
+    },
+    "monograma-cdm": {
+      "src": "/images/instituto/marca/monograma-cdm.webp",
+      "largura": 1200,
+      "altura": 628,
+      "alt": "Monograma CDM",
+      "categoria": "marca",
+      "tipo": "marca",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/05/cdm.png"
+    },
+    "padrao-cadeiras": {
+      "src": "/images/instituto/marca/padrao-cadeiras.webp",
+      "largura": 1920,
+      "altura": 300,
+      "alt": "",
+      "categoria": "marca",
+      "tipo": "grafico",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/charis.png"
+    },
+    "ilustracao-brasil-africa": {
+      "src": "/images/instituto/ilustracao-brasil-africa.webp",
+      "largura": 1920,
+      "altura": 1080,
+      "alt": "Ilustração em tons de roxo com os mapas do Brasil e da África e símbolos culturais",
+      "categoria": "instituto",
+      "tipo": "grafico",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/bgbgbg.png"
+    },
+    "retrato-trancista": {
+      "src": "/images/instituto/retrato-trancista.webp",
+      "largura": 500,
+      "altura": 500,
+      "alt": "Retrato de uma mulher negra sorrindo, de avental preto e blusa vermelha",
+      "categoria": "instituto",
+      "tipo": "foto",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/hee.png",
+      "nota": "No site atual aparece ao lado da citação de Helaine Cristina; o nome só será usado depois de confirmação."
+    },
+    "cidade-ademar": {
+      "src": "/images/comunidade/cidade-ademar-colagem.webp",
+      "largura": 1350,
+      "altura": 1080,
+      "alt": "Colagem em preto e branco da Cidade Ademar: letreiro do bairro, casas no morro e pessoas reunidas na rua",
+      "categoria": "comunidade",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/IMSGS.png"
+    },
+    "casa-de-cultura": {
+      "src": "/images/comunidade/casa-de-cultura-cidade-ademar.webp",
+      "largura": 855,
+      "altura": 540,
+      "alt": "Mulher sorrindo ao lado do painel da Casa de Cultura Cidade Ademar",
+      "categoria": "comunidade",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/Instituto-Costa-da-Mina.png (recorte 115,100,970,640)"
+    },
+    "beco-cartaz": {
+      "src": "/images/projetos/beco-da-mina/cartaz-lata-de-spray.webp",
+      "largura": 1080,
+      "altura": 1350,
+      "alt": "Cartaz do Beco da Mina: lata de spray com a cadeira de raízes do Instituto",
+      "categoria": "beco-da-mina",
+      "tipo": "grafico",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/Instituto-Costa-da-Mina-2.png"
+    },
+    "beco-antes": {
+      "src": "/images/projetos/beco-da-mina/antes.webp",
+      "largura": 390,
+      "altura": 300,
+      "alt": "A rua antes dos murais, em preto e branco: muros cinzas e calçada vazia",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/becco.png (recorte 0,0,390,300)"
+    },
+    "beco-mural-trancistas": {
+      "src": "/images/projetos/beco-da-mina/mural-trancistas.webp",
+      "largura": 266,
+      "altura": 300,
+      "alt": "Fachada pintada de roxo com mural de três mulheres negras trançando os cabelos umas das outras",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/becco.png (recorte 392,0,658,300)"
+    },
+    "beco-esboco": {
+      "src": "/images/projetos/beco-da-mina/esboco.webp",
+      "largura": 228,
+      "altura": 300,
+      "alt": "Mulher diante de um muro com o esboço do mural e uma escada apoiada",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/becco.png (recorte 660,0,888,300)"
+    },
+    "beco-pintura": {
+      "src": "/images/projetos/beco-da-mina/mural-em-pintura.webp",
+      "largura": 270,
+      "altura": 300,
+      "alt": "Mural em pintura: rosto de mulher cercado de flores e um beija-flor",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/becco.png (recorte 890,0,1160,300)"
+    },
+    "beco-artistas": {
+      "src": "/images/projetos/beco-da-mina/artistas.webp",
+      "largura": 226,
+      "altura": 300,
+      "alt": "Três artistas sorrindo em frente ao mural colorido",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/becco.png (recorte 1162,0,1388,300)"
+    },
+    "beco-fachada": {
+      "src": "/images/projetos/beco-da-mina/fachada.webp",
+      "largura": 228,
+      "altura": 300,
+      "alt": "Mulher em frente à fachada roxa do Instituto",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/becco.png (recorte 1390,0,1618,300)"
+    },
+    "beco-mural-rosto": {
+      "src": "/images/projetos/beco-da-mina/mural-rosto.webp",
+      "largura": 300,
+      "altura": 300,
+      "alt": "Detalhe de mural: rosto de mulher de olhos fechados, cercado de flores",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/becco.png (recorte 1620,0,1920,300)"
+    },
+    "beco-adesivo-mural": {
+      "src": "/images/projetos/beco-da-mina/adesivo-no-mural.webp",
+      "largura": 400,
+      "altura": 225,
+      "alt": "Mão segurando um adesivo \"Beco da Mina\" diante de um mural colorido",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/04/SARAU-TRANCADO.gif (quadro 21)"
+    },
+    "beco-adesivo-rua": {
+      "src": "/images/projetos/beco-da-mina/adesivo-na-rua.webp",
+      "largura": 400,
+      "altura": 225,
+      "alt": "Adesivo \"Beco da Mina\" segurado diante da rua",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/04/SARAU-TRANCADO.gif (quadro 26)"
+    },
+    "beco-adesivo-muro": {
+      "src": "/images/projetos/beco-da-mina/adesivo-no-muro.webp",
+      "largura": 400,
+      "altura": 225,
+      "alt": "Adesivo \"Beco da Mina\" colado em um muro laranja",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/04/SARAU-TRANCADO.gif (quadro 31)"
+    },
+    "beco-letreiro": {
+      "src": "/images/projetos/beco-da-mina/letreiro.webp",
+      "largura": 360,
+      "altura": 478,
+      "alt": "Artista pintando com spray o letreiro \"Beco da Mina\" em um muro branco",
+      "categoria": "beco-da-mina",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/gif-beco.gif (quadro 256)"
+    },
+    "trancando-marca": {
+      "src": "/images/projetos/trancando-o-futuro/marca.webp",
+      "largura": 1080,
+      "altura": 1350,
+      "alt": "Marca do Trançando o Futuro: nó de trança em forma de infinito",
+      "categoria": "trancando-o-futuro",
+      "tipo": "marca",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/05/1-POST-CDM.png"
+    },
+    "trancando-cartaz": {
+      "src": "/images/projetos/trancando-o-futuro/cartaz.webp",
+      "largura": 1080,
+      "altura": 1350,
+      "alt": "Cartaz roxo e laranja do Trançando o Futuro com rostos de mulheres negras trançadas",
+      "categoria": "trancando-o-futuro",
+      "tipo": "grafico",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/Instituto-Costa-da-Mina-3.png"
+    },
+    "trancando-oficina": {
+      "src": "/images/projetos/trancando-o-futuro/oficina-casa-de-cultura.webp",
+      "largura": 750,
+      "altura": 1090,
+      "alt": "Oficina de tranças na Casa de Cultura: uma instrutora orienta uma aluna que trança o cabelo de outra pessoa",
+      "categoria": "trancando-o-futuro",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/05/1-POST-CDM-1.jpg (recorte 166,0,916,1090)"
+    },
+    "trancando-oficina-2": {
+      "src": "/images/projetos/trancando-o-futuro/oficina-2.webp",
+      "largura": 480,
+      "altura": 640,
+      "alt": "Participantes trançando cabelos durante a oficina",
+      "categoria": "trancando-o-futuro",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/tof.mp4 (recorte 0,60,480,700) (vídeo, 24s)"
+    },
+    "trancando-oficina-3": {
+      "src": "/images/projetos/trancando-o-futuro/oficina-3.webp",
+      "largura": 480,
+      "altura": 640,
+      "alt": "Duas participantes trabalham juntas em uma trança",
+      "categoria": "trancando-o-futuro",
+      "tipo": "foto",
+      "galeria": true,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/tof.mp4 (recorte 0,60,480,700) (vídeo, 38s)"
+    },
+    "casa-de-cultura-fachada": {
+      "src": "/images/comunidade/casa-de-cultura-fachada.webp",
+      "largura": 480,
+      "altura": 640,
+      "alt": "Fachada de prédio com faixas coloridas pintadas, no local da oficina",
+      "categoria": "comunidade",
+      "tipo": "foto",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/tof.mp4 (recorte 0,60,480,700) (vídeo, 44s)"
+    },
+    "trancando-video-capa": {
+      "src": "/images/projetos/trancando-o-futuro/video-capa.webp",
+      "largura": 480,
+      "altura": 848,
+      "alt": "",
+      "categoria": "trancando-o-futuro",
+      "tipo": "foto",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/tof.mp4 (vídeo, 24s)"
+    },
+    "tranca-amiga-marca": {
+      "src": "/images/projetos/tranca-amiga/marca.webp",
+      "largura": 454,
+      "altura": 678,
+      "alt": "Marca do Trança Amiga: coração desenhado por duas tranças",
+      "categoria": "tranca-amiga",
+      "tipo": "marca",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/04/Ativo-1.png"
+    },
+    "tranca-amiga-cartaz": {
+      "src": "/images/projetos/tranca-amiga/cartaz.webp",
+      "largura": 1080,
+      "altura": 1350,
+      "alt": "Cartaz roxo do Trança Amiga com o coração de tranças",
+      "categoria": "tranca-amiga",
+      "tipo": "grafico",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/04/PROJETO_TRANCA_AMIGA.jpg"
+    },
+    "tranca-amiga-banner": {
+      "src": "/images/projetos/tranca-amiga/banner.webp",
+      "largura": 1920,
+      "altura": 1081,
+      "alt": "Marca do Trança Amiga sobre fundo roxo",
+      "categoria": "tranca-amiga",
+      "tipo": "grafico",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/04/Ativo-2.png"
+    },
+    "sarau-cartaz": {
+      "src": "/images/projetos/sarau-trancado/cartaz.webp",
+      "largura": 1080,
+      "altura": 1350,
+      "alt": "Cartaz do Sarau Trançado: microfone sobre fundo em tons de rosa, roxo e azul",
+      "categoria": "sarau-trancado",
+      "tipo": "grafico",
+      "galeria": false,
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/SARAU-TRANCADO.png"
+    }
+  },
+  "videos": {
+    "trancando-oficina-video": {
+      "src": "/videos/trancando-o-futuro-oficina.mp4",
+      "capa": "trancando-video-capa",
+      "descricao": "Vídeo de uma oficina do Trançando o Futuro na Casa de Cultura Cidade Ademar.",
+      "origem": "https://institutocostadamina.com.br/wp-content/uploads/2026/03/tof.mp4"
+    }
+  }
+}

@@ -1,7 +1,13 @@
 node_modules/
-dist/
-.astro/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
 .env
 .env.*
 .DS_Store
 Thumbs.db
+
+# imagens: originais baixados (cache) e variantes geradas no build
+.cache/
+public/_img/

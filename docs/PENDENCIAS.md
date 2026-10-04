@@ -1,10 +1,10 @@
 # Pendências de conteúdo
 
-Gerado por `npm run pendencias` a partir de `src/data/pendencias.ts`. Não edite à mão.
+Gerado por `npm run pendencias` a partir de `src/content/pendencias.ts`. Não edite à mão.
 
-Nada desta lista aparece no site publicado. Em `npm run dev`, cada item aparece como um aviso tracejado em vermelho no ponto da página onde a informação entraria.
+Nada desta lista aparece no site publicado. Em `npm run dev`, cada item aparece como um aviso tracejado em vermelho (componente `<Pendente>`) no ponto da página onde a informação entraria.
 
-Total: **20**
+Total: **27**
 
 ## Nome jurídico da organização
 
@@ -81,8 +81,14 @@ Total: **20**
 ## Fotos em alta resolução
 
 - **id:** `fotos-alta-resolucao`
-- **Onde:** Beco da Mina e página inicial
-- **Situação:** Várias fotos do Beco da Mina só existiam no site anterior como uma colagem de 1920×300 px; os recortes ficam pequenos (cerca de 260 px de largura). Pedir os arquivos originais ao Instituto.
+- **Onde:** Home inteira, projetos e galeria
+- **Situação:** O design aprovado pede fotos grandes (hero de 1920 px ou mais, Sobre, Beco, Impacto, Apoie, galeria). O site atual só tem: murais do Beco recortados de uma colagem de 300 px de altura, quadros de vídeo de 480 px e um retrato de 500 px já em círculo. A única peça grande é a ilustração Brasil–África (1920 px). Pedir ao Instituto os originais (fotos dos posts do Instagram, murais, oficinas, território). Lista completa em docs/IMAGENS.md.
+
+## Identificação e autorização das pessoas nas fotos
+
+- **id:** `identificacao-pessoas`
+- **Onde:** Sobre o Instituto, Beco da Mina, galeria
+- **Situação:** Nenhuma foto do acervo leva nome de pessoa. O retrato usado no site atual ao lado da citação de Helaine Cristina provavelmente é dela, e há fotos de artistas do Beco e de participantes das oficinas. Confirmar quem aparece e se há autorização de uso de imagem antes de nomear.
 
 ## QR Code da página "Sobre"
 
@@ -95,6 +101,24 @@ Total: **20**
 - **id:** `privacidade-data`
 - **Onde:** Política de Privacidade
 - **Situação:** A política anterior promete exibir a data de atualização, mas não exibe. Definir a data na aprovação.
+
+## Chave PIX para doações
+
+- **id:** `pix-validacao`
+- **Onde:** Seção Apoie e página /apoie
+- **Situação:** O site anterior publica o CNPJ 62.212.632/0001-76 como chave PIX. Na versão em Next.js a chave só aparece depois que o Instituto confirmar que ela está ativa e em nome da organização.
+
+## Versão branca do logotipo
+
+- **id:** `logo-branco`
+- **Onde:** Header e rodapé
+- **Situação:** O design aprovado usa um logo diferente do oficial. Será usada uma versão branca derivada do logotipo oficial (header escuro e rodapé). Confirmar com o Instituto se existe arquivo oficial dessa versão.
+
+## Textos curtos vindos do design aprovado
+
+- **id:** `textos-design`
+- **Onde:** Home e cards de projetos
+- **Situação:** Pilares, descrições curtas dos projetos (ex.: Sarau Trançado "Música, poesia e cultura da nossa comunidade") e frases da home vêm da imagem aprovada, não do site anterior. Confirmar que descrevem as atividades reais.
 
 ## Contas do módulo de cursos (Supabase e Cloudflare Turnstile)
 
@@ -119,6 +143,24 @@ Total: **20**
 - **id:** `menores-cursos`
 - **Onde:** Formulário de inscrição
 - **Situação:** Um cartaz antigo cita "+14 anos". O sistema permite definir idade mínima por turma, mas o Instituto precisa decidir a idade e, para menores de 18, se exigirá autorização de responsável (a LGPD pede consentimento de responsável para crianças de até 12 anos).
+
+## Visão, valores e equipe
+
+- **id:** `visao-valores-equipe`
+- **Onde:** /instituto/
+- **Situação:** A página /instituto/ está pronta para mostrar visão, valores e equipe, mas o site anterior não traz esses textos. Nada é exibido até o Instituto enviar (nomes e funções da equipe precisam de autorização).
+
+## Documentos de transparência
+
+- **id:** `transparencia-documentos`
+- **Onde:** /instituto/#transparencia
+- **Situação:** A seção Transparência mostra só dados públicos (nome, CNPJ, endereço, contato). Estatuto, atas, relatórios de atividades e prestação de contas podem ser publicados quando o Instituto enviar.
+
+## Termos de Uso
+
+- **id:** `termos-revisao`
+- **Onde:** /termos/
+- **Situação:** Não existe texto oficial de Termos de Uso no site anterior. A página /termos/ traz regras básicas de uso de um site informativo, escritas para o novo site; precisam de revisão e aprovação do Instituto (idealmente com apoio jurídico).
 
 ## Outras redes sociais
 
